@@ -1,0 +1,17 @@
+{
+    "تاریخ مراجعه": "referdate",
+    "نام متقاضی": "cfname",
+    "نام خانوادگی متقاضی": "clname",
+    "نام پدر": "father",
+    "شماره ملی": "nationalno",
+    "تاریخ تولد": "birthdate",
+    "میزان تحصیلات": "education",
+    "رشته تحصیلی": "major",
+    "وضعیت جسمانی": "physicalstatus",
+    "وضعیت سلامت روحی و روانی": "mentalstatus",
+    "سابقه بیماری روحی و روانی در خانواده": "fmentalillhistory",
+    "سابقه بیماری روحی و روانی مراجع": "cmentalillhistory",
+    "سابقه مصرف دارو و بستری": "cillnesshist",
+    "سابقه سو مصرف دارو": "drughistory",
+    "تحت درمان متخصص اعصاب": "mentalcare"
+}

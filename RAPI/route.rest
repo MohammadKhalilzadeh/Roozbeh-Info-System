@@ -1,0 +1,24 @@
+GET http://localhost:3000/staffs
+
+###
+
+GET http://localhost:3000/staffs/643adafcbc4ea6d415c24551
+
+###
+
+POST http://localhost:3000/staffs
+Content-Type: application/json
+
+{
+    "firstname": "Mohammad",
+    "lastname": "Khalilzadeh",
+    "nationalno": 1234567890,
+    "phone": 9217135499,
+    "username": "Mohammad",
+    "password": "12341234",
+    "address": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut",
+    "resolver": true,
+    "counsultant": true,
+    "health": true,
+    "education": true
+}
