@@ -7,7 +7,13 @@
       <div class="form-content">
         <section>
           <label for="date">تاریخ</label>
-          <input class="input-field" type="date" name="Date" id="date" />
+          <input
+            class="input-field"
+            type="date"
+            name="Date"
+            id="date"
+            v-model="form.docdate"
+          />
         </section>
         <hr />
         <section>
@@ -16,7 +22,16 @@
             type="text"
             name="AudienceName"
             id="audience"
+            placeholder="نام واحد"
+            v-model="form.deporgname"
+          />
+          <input
+            class="input-field"
+            type="text"
+            name="AudienceName"
+            id="audience"
             placeholder="نام کامل مدیر سازمان یا واحد کاریابی"
+            v-model="form.calleefullname"
           />
           <input
             class="input-field"
@@ -24,6 +39,7 @@
             name="clientfname"
             id="clientfname"
             placeholder="نام متقاضی"
+            v-model="form.cfname"
           />
           <input
             class="input-field"
@@ -31,6 +47,7 @@
             name="clientlname"
             id="clientlname"
             placeholder="نام خانوادگی متقاضی"
+            v-model="form.clname"
           />
           <input
             class="input-field"
@@ -38,6 +55,7 @@
             name="nationalno"
             id="nationalno"
             placeholder="شماره ملی"
+            v-model="form.nationalno"
           />
           <input
             class="input-field"
@@ -45,6 +63,7 @@
             name="service"
             id="service"
             placeholder="نام خدمات حمایتی یا اشتغال و کاریابی"
+            v-model="form.servicetitle"
           />
           <input
             class="input-field"
@@ -52,25 +71,30 @@
             name="skill"
             id="skill"
             placeholder="زمینه مهارت متقاضی"
+            v-model="form.skill"
           />
         </section>
         <hr />
         <section id="matn">
-          <h5>مدیر محترم سازمان / واحد محترم کاریابی {{ fullname }}</h5>
-          <h6>آقای / خانم {{ fullname }}</h6>
+          <h5>مدیر محترم سازمان / واحد محترم کاریابی {{ form.deporgname }}</h5>
+          <h6>آقای / خانم {{ form.calleefullname }}</h6>
           <p>
             با سلام، بدین وسیله سرکار خانم
-            {{ clientfname }} {{ clientlname }}
+            {{ form.cfname }} {{ form.clname }}
             به شماره ملی
             {{ nationalno }}
             برای استفاده از خدمات حمایتی / خدمات اشتغال و کاریابی
-            {{ servicename }}
+            {{ form.servicetitle }}
             به حضور جنابعالی معرفی می‌گردد. لازم به ذکر است نامبرده در زمینه
-            {{ skill }}
+            {{ form.skill }}
             مهارت داشته و علاقمند اشتغال به کار در این زمینه می‌باشد. خواهشمند
             است دستورات لازم را مبذول بفرمایید.
           </p>
           <h5>با تشکر، مدیر مددکاری موسسه خیریه روزبه</h5>
+        </section>
+        <hr />
+        <section>
+          <button @click="submitForm">Submit</button>
         </section>
       </div>
     </div>
@@ -78,17 +102,38 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "HelloWorld",
+  name: "FQ12-02-00",
   data: () => {
     return {
-      fullname: '"نام و نام خانوادگی مسئول"',
-      clientfname: "محمد",
-      clientlname: "خلیل زاده",
-      nationalno: 1234567890,
-      servicename: "بسته حمایتی",
-      skill: "نقاشی",
+      formcode: "FQ12-02-00",
+      nationalno: "",
+      form: {
+        docdate: "",
+        deporgname: "",
+        calleefullname: "",
+        cfname: "",
+        clname: "",
+        servicetitle: "",
+        skill: "",
+      },
     };
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post("http://localhost:3000/forms", {
+          formcode: this.formcode,
+          nationalno: this.nationalno,
+          content: this.form,
+        })
+        .then((res) => {
+          console.log(res.status);
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>

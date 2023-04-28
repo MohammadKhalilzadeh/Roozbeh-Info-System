@@ -594,7 +594,6 @@ export default {
   width: 96%;
   margin: 30px auto;
   padding: 3%;
-  border: 2px solid #0b9fc2;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

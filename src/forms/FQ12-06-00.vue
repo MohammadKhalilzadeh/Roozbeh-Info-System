@@ -11,6 +11,7 @@
           name="cfname"
           id="cfname"
           placeholder="نام متقاضی"
+          v-model="form.cfname"
         />
         <input
           class="input-field"
@@ -18,6 +19,7 @@
           name="clname"
           id="clname"
           placeholder="نام خانوادگی متقاضی"
+          v-model="form.clname"
         />
         <input
           class="input-field"
@@ -25,6 +27,7 @@
           name="father"
           id="father"
           placeholder="نام پدر"
+          v-model="form.father"
         />
         <input
           class="input-field"
@@ -32,6 +35,7 @@
           name="nationalno"
           id="nationalno"
           placeholder="شماره ملی"
+          v-model="nationalno"
         />
         <input
           class="input-field"
@@ -39,6 +43,7 @@
           name="edudep"
           id="edudep"
           placeholder="نام واحد آموزشی"
+          v-model="form.edudepname"
         />
       </section>
       <hr />
@@ -46,14 +51,14 @@
         <div class="text-holder">
           <p>
             اینجانب
-            {{ fname }} {{ lname }}
+            {{ form.cfname }} {{ form.clname }}
             فرزند
             {{ father }}
             به شماره ملی
-            {{ nationalid }}
+            {{ nationalno }}
             با مطالعه و اطلاع کامل سرفصل های آموزشی موسسه خیریه روزبه، مایلم در
             واحد آموزشی
-            {{ edudep }}
+            {{ form.edudepname }}
             مشغول به یادگیری و مهارت آموزی شوم.
           </p>
         </div>
@@ -84,10 +89,36 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "HelloWorld",
+  name: "FQ12-06-00",
   data: () => {
-    return {};
+    return {
+      formcode: "FQ12-06-00",
+      nationalno: "",
+      form: {
+        cfname: "",
+        clname: "",
+        father: "",
+        nationalno: "",
+        edudepname: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post("http://localhost:3000/forms", {
+          formcode: this.formcode,
+          nationalno: this.nationalno,
+          content: this.form,
+        })
+        .then((res) => {
+          console.log(res.status);
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>

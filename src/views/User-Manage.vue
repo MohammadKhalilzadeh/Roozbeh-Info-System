@@ -1,59 +1,143 @@
 <template>
   <div class="home">
     <div class="user-ops">
-      <input
-        class="input-field"
-        type="text"
-        name="firstname"
-        id="firstname"
-        placeholder="نام همکار"
-      />
-      <input
-        class="input-field"
-        type="text"
-        name="lastname"
-        id="lastname"
-        placeholder="نام خانوادگی همکار"
-      />
-      <input
-        class="input-field"
-        type="text"
-        name="username"
-        id="username"
-        placeholder="نام کاربری"
-      />
-      <input
-        class="input-field"
-        type="text"
-        name="password"
-        id="password"
-        placeholder="رمزعبور"
-      />
-      <select class="input-field" name="cars" id="cars">
-        <option value="volv">Option 1</option>
-        <option value="saab">Option 2</option>
-        <option value="opel">Option 3</option>
-        <option value="audi">Option 4</option>
-      </select>
-      <button>ایجاد</button>
+      <div class="sections">
+        <input
+          class="input-field"
+          type="text"
+          name="firstname"
+          id="firstname"
+          placeholder="نام همکار"
+          v-model="form.firstname"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="lastname"
+          id="lastname"
+          placeholder="نام خانوادگی همکار"
+          v-model="form.lastname"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="username"
+          id="username"
+          placeholder="شماره ملی"
+          v-model="form.nationalno"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="password"
+          id="password"
+          placeholder="شماره تماس"
+          v-model="form.phone"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="password"
+          id="password"
+          placeholder="نام کاربری"
+          v-model="form.username"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="password"
+          id="password"
+          placeholder="رمزعبور"
+          v-model="form.password"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="password"
+          id="password"
+          placeholder="آدرس"
+          v-model="form.address"
+        />
+      </div>
+      <div class="sections">
+        <div class="access-options">
+          <input
+            type="checkbox"
+            name="option1"
+            value="مددجویان"
+            v-model="form.resolver"
+            class="input-check"
+          />
+          <label>مددجویان</label>
+        </div>
+        <div class="access-options">
+          <input
+            type="checkbox"
+            name="option2"
+            value="آموزش"
+            v-model="form.education"
+            class="input-check"
+          />
+          <label>آموزش</label>
+        </div>
+        <div class="access-options">
+          <input
+            type="checkbox"
+            name="option3"
+            value="بهداشت"
+            v-model="form.health"
+            class="input-check"
+          />
+          <label>بهداشت</label>
+        </div>
+        <div class="access-options">
+          <input
+            type="checkbox"
+            name="option4"
+            value="مشاوره"
+            v-model="form.counsultant"
+            class="input-check"
+          />
+          <label>مشاوره</label>
+        </div>
+      </div>
+      <button @click="postUser">ایجاد</button>
     </div>
     <hr />
-    <div class="employees-list">
+    <div class="members-list">
       <table>
         <tr>
-          <th>ردیف</th>
           <th>نام</th>
           <th>نام خانوادگی</th>
+          <th>شماره ملی</th>
+          <th>شماره تماس</th>
           <th>نام کاربری</th>
-          <th>عملیات</th>
+          <th>پنل مددکاری</th>
+          <th>پنل مشاوره</th>
+          <th>پنل بهداشت</th>
+          <th>پنل آموزش</th>
         </tr>
-        <tr>
-          <td>0</td>
-          <td>محمد</td>
-          <td>خلیل زاده</td>
-          <td>mohammadkh</td>
+        <tr v-for="(member, index) in members" :key="index">
+          <td>{{ member.firstname }}</td>
+          <td>{{ member.lastname }}</td>
+          <td>{{ member.nationalno }}</td>
+          <td>{{ member.phone }}</td>
+          <td>{{ member.username }}</td>
           <td>
-            <button class="delete">حذف</button>
+            <h6 v-if="member.resolver">فعال</h6>
+            <h6 v-else>غیرفعال</h6>
+          </td>
+          <td>
+            <h6 v-if="member.counsultant">فعال</h6>
+            <h6 v-else>غیرفعال</h6>
+          </td>
+          <td>
+            <h6 v-if="member.health">فعال</h6>
+            <h6 v-else>غیرفعال</h6>
+          </td>
+          <td>
+            <h6 v-if="member.education">فعال</h6>
+            <h6 v-else>غیرفعال</h6>
           </td>
         </tr>
       </table>
@@ -62,9 +146,41 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "UserManage",
-  data: () => ({}),
+  data: () => {
+    return {
+      members: {},
+      form: {
+        firstname: "",
+        lastname: "",
+        nationalno: "",
+        phone: "",
+        username: "",
+        password: "",
+        address: "",
+        resolver: false,
+        counsultant: false,
+        health: false,
+        education: false,
+      },
+    };
+  },
+  methods: {
+    postUser() {
+      console.log(this.form);
+      axios.post("http://localhost:3000/staffs", this.form).then((response) => {
+        console.log(response);
+      });
+    },
+  },
+  created() {
+    axios.get("http://localhost:3000/staffs").then((response) => {
+      this.members = response.data;
+    });
+  },
 };
 </script>
 
@@ -74,19 +190,27 @@ export default {
   padding: 5%;
 }
 
-.user-ops {
-  width: 500px;
-  border: 1px solid #0b9fc2;
+.user-ops,
+.members-list {
+  width: 80%;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 40px auto;
   padding: 3%;
 }
 
+.members-list {
+  width: 90%;
+}
+
 input {
   width: 300px;
   text-align: start;
-  margin: 10px auto;
+  margin: 10px 20px;
+}
+
+.input-field {
+  margin: 5px 15px;
 }
 
 button {
@@ -98,15 +222,21 @@ button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.employees-list {
-  width: 800px;
-  padding: 3%;
-  margin: 30px auto;
-  border: solid 2px #0b9fc2;
-  border-radius: 15px;
+.access-options {
+  width: 40%;
+  margin: 0;
+  float: inline-start;
 }
 
-.delete {
-  background-color: #c2140b;
+.input-check {
+  width: 50px;
+}
+
+label {
+  width: 200px;
+}
+
+button {
+  background-color: #02b075;
 }
 </style>

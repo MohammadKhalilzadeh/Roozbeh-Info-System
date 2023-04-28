@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-2">
     <ul>
-      <li>
+      <li v-if="accesses.resolver">
         <router-link
           class="route-btn"
           to="/userpanel/madadkhari"
@@ -9,7 +9,7 @@
           >مدیریت مددکاری</router-link
         >
       </li>
-      <li>
+      <li v-if="accesses.counsultant">
         <router-link
           class="route-btn"
           to="/userpanel/counseling"
@@ -17,7 +17,7 @@
           >واحد مشاوره</router-link
         >
       </li>
-      <li>
+      <li v-if="accesses.education">
         <router-link
           class="route-btn"
           to="/userpanel/education"
@@ -25,7 +25,7 @@
           >واحد آموزشی</router-link
         >
       </li>
-      <li>
+      <li v-if="accesses.health">
         <router-link
           class="route-btn"
           to="/userpanel/health"
@@ -40,7 +40,20 @@
 <script>
 export default {
   name: "HelloWorld",
-  data: () => ({}),
+  data: () => {
+    return {
+      accesses: {},
+    };
+  },
+  created() {
+    this.accesses = {
+      resolver: true, //localStorage.getItem("resolver"),
+      counsultant: true, //localStorage.getItem("counsultant"),
+      health: true, //localStorage.getItem("health"),
+      education: true, //localStorage.getItem("education"),
+    };
+    console.log(this.accesses);
+  },
 };
 </script>
 
@@ -48,6 +61,8 @@ export default {
 .navbar-2 {
   direction: rtl;
   text-align: right;
+  background-color: #02b075;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 ul {
@@ -55,12 +70,13 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #0b9fc2;
+  background-color: #02b075;
   color: white;
 }
 
 li {
   float: left;
+  background-color: #02b075;
 }
 
 .route-btn {
@@ -69,10 +85,6 @@ li {
   padding: 14px 16px;
   color: white;
   text-decoration: none;
-}
-
-.route-btn:hover {
-  background-color: #0b9fc2;
-  color: white;
+  background-color: #02b075;
 }
 </style>

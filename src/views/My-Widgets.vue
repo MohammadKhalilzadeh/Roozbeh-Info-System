@@ -42,7 +42,7 @@
       <textarea name="Textarea" id="textarea" rows="8"></textarea>
     </div>
 
-    <div class="input-field">
+    <div class="input-field table">
       <table>
         <tr>
           <th>Month</th>
@@ -73,14 +73,13 @@ export default {
   margin: 5%;
   width: 90%;
   padding: 3%;
-  border: solid 1px #0b9fc2;
+  border: #18191b;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .input-field,
 #radio-box {
-  border: solid 1px #0b9fc2;
   padding: 10px 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -101,9 +100,13 @@ input {
   margin: 0.4rem;
 }
 
+.table {
+  width: 90%;
+}
+
 table,
 th,
 td {
-  border: 1px solid #0b9fc2;
+  border: 1px solid #02b075;
 }
 </style>

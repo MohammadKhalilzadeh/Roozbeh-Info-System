@@ -6,9 +6,21 @@
       </section>
       <section>
         <label for="adddate">تاریخ جذب:</label>
-        <input class="input-field" type="date" name="Date" id="date" />
+        <input
+          v-model="form.admissiondate"
+          class="input-field"
+          type="date"
+          name="Date"
+          id="date"
+        />
         <label for="adddate">تاریخ اتمام دوره آموزشی:</label>
-        <input class="input-field" type="date" name="Date" id="date" />
+        <input
+          v-model="form.courseenddate"
+          class="input-field"
+          type="date"
+          name="Date"
+          id="date"
+        />
       </section>
       <section>
         <input
@@ -17,6 +29,7 @@
           name="cfname"
           id="cfname"
           placeholder="نام مددجو"
+          v-model="form.cfname"
         />
         <input
           class="input-field"
@@ -24,6 +37,15 @@
           name="clname"
           id="clname"
           placeholder="نام خانواده مددجو"
+          v-model="form.clname"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="clname"
+          id="clname"
+          placeholder="کد ملی مددجو"
+          v-model="nationalno"
         />
         <input
           class="input-field"
@@ -31,6 +53,7 @@
           name="edudep"
           id="edudep"
           placeholder="واحد آموزشی"
+          v-model="form.edudep"
         />
       </section>
       <hr />
@@ -105,10 +128,36 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "HelloWorld",
+  name: "FQ12-10-00",
   data: () => {
-    return {};
+    return {
+      formcode: "FQ12-10-00",
+      nationalno: "",
+      form: {
+        admissiondate: "",
+        courseenddate: "",
+        cfname: "",
+        clname: "",
+        edudep: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post("http://localhost:3000/forms", {
+          formcode: this.formcode,
+          nationalno: this.nationalno,
+          content: this.form,
+        })
+        .then((res) => {
+          console.log(res.status);
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>

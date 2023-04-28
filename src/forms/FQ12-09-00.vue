@@ -6,7 +6,13 @@
       </div>
       <section>
         <label for="introdate">تاریخ معرفی:</label>
-        <input class="input-field" type="date" name="Date" id="date" />
+        <input
+          v-model="form.referdate"
+          class="input-field"
+          type="date"
+          name="Date"
+          id="date"
+        />
       </section>
       <section>
         <input
@@ -15,6 +21,7 @@
           name="fname"
           id="fname"
           placeholder="نام"
+          v-model="form.cfname"
         />
         <input
           class="input-field"
@@ -22,6 +29,7 @@
           name="lname"
           id="lname"
           placeholder="نام خانوادگی"
+          v-model="form.clname"
         />
         <input
           class="input-field"
@@ -29,6 +37,7 @@
           name="father"
           id="father"
           placeholder="نام پدر"
+          v-model="form.father"
         />
         <input
           class="input-field"
@@ -36,6 +45,7 @@
           name="birthyear"
           id="birthyear"
           placeholder="سال تولد"
+          v-model="form.birthyear"
         />
         <input
           class="input-field"
@@ -43,6 +53,7 @@
           name="education"
           id="education"
           placeholder="میزان تحصیلات"
+          v-model="form.educationlvl"
         />
       </section>
       <hr />
@@ -58,7 +69,7 @@
                 id="huey"
                 name="drone"
                 value="مجرد"
-                checked
+                v-model="form.maritalstatus"
               />
               <label for="huey">مجرد</label>
             </div>
@@ -70,6 +81,7 @@
                 id="dewey"
                 name="drone"
                 value="متاهل"
+                v-model="form.maritalstatus"
               />
               <label for="dewey">متاهل</label>
             </div>
@@ -81,6 +93,7 @@
                 id="louie"
                 name="drone"
                 value="مطلقه"
+                v-model="form.maritalstatus"
               />
               <label for="louie">مطلقه</label>
             </div>
@@ -92,6 +105,7 @@
                 id="louie"
                 name="drone"
                 value="فوت همسر"
+                v-model="form.maritalstatus"
               />
               <label for="louie">فوت همسر</label>
             </div>
@@ -103,6 +117,7 @@
                 id="louie"
                 name="drone"
                 value="همسر مفقودالاثر"
+                v-model="form.maritalstatus"
               />
               <label for="louie">همسر مفقودالاثر</label>
             </div>
@@ -114,6 +129,7 @@
                 id="louie"
                 name="drone"
                 value="ترک منزل همسر"
+                v-model="form.maritalstatus"
               />
               <label for="louie">ترک منزل همسر</label>
             </div>
@@ -125,6 +141,7 @@
                 id="louie"
                 name="drone"
                 value="همسر زندانی"
+                v-model="form.maritalstatus"
               />
               <label for="louie">همسر زندانی</label>
             </div>
@@ -136,6 +153,7 @@
                 id="louie"
                 name="drone"
                 value="در حال طلاق"
+                v-model="form.maritalstatus"
               />
               <label for="louie">در حال طلاق</label>
             </div>
@@ -145,32 +163,62 @@
       <hr />
       <section>
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.illness"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
 بیماری فعلی</textarea
           >
         </div>
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.previllness"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
 سابقه بیماری قبلی</textarea
           >
         </div>
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.previllness"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
 سابقه مصرف دارو خاص</textarea
           >
         </div>
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.specialdrug"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
 سابقه عادت خاص</textarea
           >
         </div>
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.specialhabit"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
 وضعیت بیماری روحی</textarea
           >
         </div>
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.hygience"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
 وضعیت بهداشت فردی</textarea
           >
         </div>
@@ -203,15 +251,53 @@
           </textarea>
         </div>
       </section>
+      <hr />
+      <section>
+        <button @click="submitForm">Submit</button>
+      </section>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "HelloWorld",
+  name: "FQ12-09-00",
   data: () => {
-    return {};
+    return {
+      formcode: "FQ12-09-00",
+      nationalno: "",
+      form: {
+        referdate: "",
+        cfname: "",
+        clname: "",
+        father: "",
+        birthyear: "",
+        educationlvl: "",
+        maritalstatus: "",
+        illness: "",
+        previllness: "",
+        specialdrug: "",
+        specialhabit: "",
+        mentalillness: "",
+        hygience: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post("http://localhost:3000/forms", {
+          formcode: this.formcode,
+          nationalno: this.nationalno,
+          content: this.form,
+        })
+        .then((res) => {
+          console.log(res.status);
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>

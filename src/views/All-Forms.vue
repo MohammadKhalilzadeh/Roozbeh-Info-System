@@ -1,38 +1,62 @@
 <template>
   <div>
     <div class="paper-templ">
-      <section class="header">
-        <h3>حضور و غیاب مددجو در واحد آموزش</h3>
-      </section>
-      <hr />
-      <section>
-        <div>
-          <label for="adddate">تاریخ شروع دوره:</label>
-          <input class="input-field" type="date" name="Date" id="date" />
-        </div>
-      </section>
-      <hr />
+      <div class="header">
+        <h3>آشنایی با دوره های آموزشی مؤسسه خیریه روزبه</h3>
+      </div>
       <section>
         <input
           class="input-field"
           type="text"
-          name="fname"
-          id="fname"
-          placeholder="نام مددجو"
+          name="cfname"
+          id="cfname"
+          placeholder="نام متقاضی"
         />
         <input
           class="input-field"
           type="text"
-          name="lname"
-          id="lname"
-          placeholder="نام خانوادگی مددجو"
+          name="clname"
+          id="clname"
+          placeholder="نام خانوادگی متقاضی"
         />
         <input
           class="input-field"
           type="text"
-          name="nationalid"
+          name="father"
+          id="father"
+          placeholder="نام پدر"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="nationalno"
+          id="nationalno"
+          placeholder="شماره ملی"
+        />
+        <input
+          class="input-field"
+          type="text"
+          name="edudep"
+          id="edudep"
           placeholder="نام واحد آموزشی"
         />
+      </section>
+      <hr />
+      <section>
+        <div class="text-holder">
+          <p>
+            اینجانب
+            {{ fname }} {{ lname }}
+            فرزند
+            {{ father }}
+            به شماره ملی
+            {{ nationalid }}
+            با مطالعه و اطلاع کامل سرفصل های آموزشی موسسه خیریه روزبه، مایلم در
+            واحد آموزشی
+            {{ edudep }}
+            مشغول به یادگیری و مهارت آموزی شوم.
+          </p>
+        </div>
       </section>
       <hr />
       <section>
@@ -40,19 +64,17 @@
           <table>
             <tr>
               <th>ردیف</th>
-              <th>تاریخ</th>
-              <th>ساعت ورود</th>
-              <th>ساعت خروج</th>
-              <th>امضا و اثر انپشت مددجو</th>
-              <th>توضیحات</th>
+              <th>آشپزی</th>
+              <th>آشپزی</th>
+              <th>قنادی</th>
+              <th>خیاطی</th>
             </tr>
             <tr>
               <td>1</td>
-              <td>$100</td>
-              <td>January</td>
-              <td>$100</td>
-              <td>January</td>
-              <td>$100</td>
+              <td>آشنایی به مواد اولیه و شرایط نگهداری دستگاه‌ها</td>
+              <td>آشنایی با شرایط نگهداری مواد غذایی</td>
+              <td>آشنایی به مواد اولیه و شرایط نگهداری دستگاه‌ها</td>
+              <td>آشنایی با دشتگاه ها و ابزار خیاطی</td>
             </tr>
           </table>
         </div>
@@ -62,10 +84,36 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "HelloWorld",
+  name: "FQ12-06-00",
   data: () => {
-    return {};
+    return {
+      formcode: "FQ12-06-00",
+      nationalno: "",
+      form: {
+        cfname: "",
+        clname: "",
+        father: "",
+        nationalno: "",
+        edudepname: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post("http://localhost:3000/forms", {
+          formcode: this.formcode,
+          nationalno: this.nationalno,
+          content: this.form,
+        })
+        .then((res) => {
+          console.log(res.status);
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>
@@ -79,7 +127,30 @@ export default {
   border-radius: 15px;
 }
 
-table {
-  width: 100%;
+.widget-list {
+  direction: rtl;
+  margin: 5%;
+  width: 90%;
+  padding: 3%;
+  border: solid 1px #0b9fc2;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: right;
+  align-items: start;
+}
+
+.radio-opt {
+  width: 33%;
+  margin: 0px;
+  float: right;
+}
+
+.radio-input {
+  width: 30px;
+  margin: 0;
+}
+
+.text-holder {
+  padding: 3%;
 }
 </style>

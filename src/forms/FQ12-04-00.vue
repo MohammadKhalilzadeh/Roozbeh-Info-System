@@ -11,19 +11,13 @@
           type="text"
           name="clientfname"
           id="clientfname"
-          placeholder="نام متقاضی"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="clientlname"
-          id="clientlname"
-          placeholder="نام خانوادگی متقاضی"
+          placeholder="نام کامل متقاضی"
+          v-model="form.cfullname"
         />
         <div>
           <h5>
             بدینوسیله خانم
-            {{ cfname }} {{ clname }}
+            {{ cfullname }}
           </h5>
           <br />
           <p>
@@ -38,6 +32,7 @@
             name="sfullname"
             id="sfullname"
             placeholder="نام و نام خانوادگی و امضا مسئول مددکاری به عنوان امضاء"
+            v-model="form.signature"
           />
         </div>
       </section>
@@ -53,6 +48,7 @@
             name="cfname"
             id="cfname"
             placeholder="نام متقاضی"
+            v-model="form.cfname"
           />
           <input
             class="input-field"
@@ -60,6 +56,7 @@
             name="cfname"
             id="cfname"
             placeholder="نام خانوادگی متقاضی"
+            v-model="form.clname"
           />
           <input
             class="input-field"
@@ -67,6 +64,7 @@
             name="father"
             id="father"
             placeholder="نام پدر"
+            v-model="form.father"
           />
           <input
             class="input-field"
@@ -74,10 +72,17 @@
             name="edu"
             id="edu"
             placeholder="تحصیلات"
+            v-model="form.education"
           />
           <div>
             <label for="birthdate">تاریخ تولد</label>
-            <input class="input-field" type="date" name="Date" id="date" />
+            <input
+              v-model="form.birthdate"
+              class="input-field"
+              type="date"
+              name="Date"
+              id="date"
+            />
           </div>
         </div>
       </section>
@@ -88,67 +93,136 @@
             <legend>وضعیت تاهل؟</legend>
 
             <div>
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.maritalstate"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">مجرد</label>
             </div>
 
             <div>
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.maritalstate"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">متاهل</label>
             </div>
 
             <div>
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.maritalstate"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">مطلقه</label>
             </div>
 
             <div>
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.maritalstate"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">فوت همسر</label>
             </div>
 
             <div>
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.maritalstate"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">همسر مفقود الاثر</label>
             </div>
 
             <div>
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.maritalstate"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">ترک منزل همسر</label>
             </div>
 
             <div>
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.maritalstate"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">زندانی همسر</label>
             </div>
 
             <div>
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.maritalstate"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">در حال طلاق</label>
             </div>
           </fieldset>
         </div>
 
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.healthissueerc"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
             سابقه بیماری جسمی و روحی و روانی:
           </textarea>
         </div>
 
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.dodrugrec"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
             سابقه سو مصرف مواد مخدر:
           </textarea>
         </div>
 
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.anydrugs"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
             سابقه مصرف دارو:
           </textarea>
         </div>
 
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.relrec"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
             سابقه روابط فردی:
           </textarea>
         </div>
@@ -160,33 +234,70 @@
             <legend>دارای بیمه خدمات درمانی:</legend>
 
             <div class="radio-opt">
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.insurance"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">کمیته امداد</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.insurance"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">روستایی</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.insurance"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">تامین اجتماعی</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.insurance"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">سلامت</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.insurance"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">نیروهای مسلح</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
-              <label for="dewey">سایپ ارگانها</label>
+              <input
+                v-model="form.insurance"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
+              <label for="dewey">سایر ارگانها</label>
             </div>
           </fieldset>
         </div>
@@ -198,6 +309,7 @@
             name="spousefname"
             id="spousefname"
             placeholder="نام همسر"
+            v-model="form.spfname"
           />
           <input
             class="input-field"
@@ -205,6 +317,7 @@
             name="spouselname"
             id="spouselname"
             placeholder="نام خانوادگی همسر"
+            v-model="form.splname"
           />
           <input
             class="input-field"
@@ -212,6 +325,7 @@
             name="spouseage"
             id="spouseage"
             placeholder="سن همسر"
+            v-model="form.spage"
           />
           <input
             class="input-field"
@@ -219,6 +333,7 @@
             name="spousejob"
             id="spousejob"
             placeholder="شغل همسر"
+            v-model="form.spjob"
           />
         </div>
         <br />
@@ -228,32 +343,69 @@
             <legend>وضعیت سلامت همسر:</legend>
 
             <div class="radio-opt">
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.sphealth"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">سابقه بیماری</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.sphealth"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">سابقه اعتیاد</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.sphealth"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">از کار افتاده</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.sphealth"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">سالم</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.sphealth"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">بدهکار</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.sphealth"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey">سابقه خودکشی</label>
             </div>
           </fieldset>
@@ -266,27 +418,62 @@
             <legend>وضعیت مسکن:</legend>
 
             <div class="radio-opt">
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.accommodation"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">اجاره‌ای</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.accommodation"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">رهنی</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.accommodation"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">شخصی</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.accommodation"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">ساکن منزل پدر شوهر</label>
             </div>
 
             <div class="radio-opt">
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.accommodation"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">ساکن منزل پدری</label>
             </div>
           </fieldset>
@@ -299,6 +486,7 @@
             name="Name"
             id="name"
             placeholder="میزان اجاره بها"
+            v-model="form.rent"
           />
         </div>
 
@@ -309,6 +497,7 @@
             name="Name"
             id="name"
             placeholder="میزان رهن"
+            v-model="form.rahn"
           />
         </div>
 
@@ -319,11 +508,17 @@
             name="Name"
             id="name"
             placeholder="شغل پدر"
+            v-model="form.fatherjob"
           />
         </div>
 
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">
+          <textarea
+            v-model="form.adrsphone"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
             آدرس و شماره تلفن
           </textarea>
         </div>
@@ -332,13 +527,23 @@
       <section>
         <div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="3">
+            <textarea
+              v-model="form.counsoleropinion"
+              name="Textarea"
+              id="textarea"
+              rows="3"
+            >
               نظر مشــاوره در مورد شرایط متقاضی:
             </textarea>
           </div>
 
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="3">
+            <textarea
+              v-model="form.manageropinion"
+              name="Textarea"
+              id="textarea"
+              rows="3"
+            >
               نظریه مدیر مددکاری:
             </textarea>
           </div>
@@ -351,12 +556,25 @@
             <legend>با توجه به توضیحات ذکر شده نتیجه زیر حاصل شد:</legend>
 
             <div>
-              <input type="radio" id="huey" name="drone" value="huey" checked />
+              <input
+                v-model="form.results"
+                type="radio"
+                id="huey"
+                name="drone"
+                value="huey"
+                checked
+              />
               <label for="huey">متقاضی شرایط پذیرش در موسسه را ندارد</label>
             </div>
 
             <div>
-              <input type="radio" id="dewey" name="drone" value="dewey" />
+              <input
+                v-model="form.results"
+                type="radio"
+                id="dewey"
+                name="drone"
+                value="dewey"
+              />
               <label for="dewey"
                 >متقاضی شرایط پذیرش در موسسه را دارد و به واحد مشاوره معرفی
                 میگردد</label
@@ -370,10 +588,57 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "HelloWorld",
+  name: "FQ12-04-00",
   data: () => {
-    return {};
+    return {
+      formcode: "FQ12-04-00",
+      nationalno: "",
+      form: {
+        cfullname: "",
+        signature: "",
+        cfname: "",
+        clname: "",
+        father: "",
+        education: "",
+        birthdate: "",
+        maritalstate: "",
+        healthissueerc: "",
+        dodrugrec: "",
+        anydrugs: "",
+        relrec: "",
+        insurance: "",
+        spfname: "",
+        splname: "",
+        spage: "",
+        spjob: "",
+        sphealth: "",
+        accommodation: "",
+        rent: "",
+        rahn: "",
+        fatherjob: "",
+        adrsphone: "",
+        counsoleropinion: "",
+        manageropinion: "",
+        results: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post("http://localhost:3000/forms", {
+          formcode: this.formcode,
+          nationalno: this.nationalno,
+          content: this.form,
+        })
+        .then((res) => {
+          console.log(res.status);
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>

@@ -5,9 +5,21 @@
       <div class="all-field">
         <section>
           <label for="refdate">تاریخ مراجعه</label>
-          <input class="input-field" type="date" name="Date" id="date" />
+          <input
+            class="input-field"
+            type="date"
+            name="Date"
+            id="date"
+            v-model="form.referdate"
+          />
           <label for="refdate">تاریخ تولد</label>
-          <input class="input-field" type="date" name="Date" id="date" />
+          <input
+            class="input-field"
+            type="date"
+            name="Date"
+            id="date"
+            v-model="form.birthdate"
+          />
         </section>
         <hr />
         <section>
@@ -17,6 +29,7 @@
             name="Firstname"
             id="firstname"
             placeholder="نام متقاضی"
+            v-model="form.cfname"
           />
           <input
             class="input-field"
@@ -24,6 +37,7 @@
             name="Lastname"
             id="lastname"
             placeholder="نام خانوادگی متقاضی"
+            v-model="form.clname"
           />
           <input
             class="input-field"
@@ -31,6 +45,7 @@
             name="Father"
             id="father"
             placeholder="نام پدر"
+            v-model="form.father"
           />
           <input
             class="input-field"
@@ -38,6 +53,7 @@
             name="Nationalid"
             id="nationalid"
             placeholder="شماره ملی"
+            v-model="form.nationalno"
           />
           <input
             class="input-field"
@@ -45,6 +61,7 @@
             name="Edulevel"
             id="edulevel"
             placeholder="میزان تحصیلات"
+            v-model="form.educationlvl"
           />
           <input
             class="input-field"
@@ -52,6 +69,7 @@
             name="major"
             id="major"
             placeholder="رشته تحصیلی"
+            v-model="form.major"
           />
           <input
             class="input-field"
@@ -59,6 +77,7 @@
             name="Physicalstate"
             id="physicalstate"
             placeholder="وضعیت جسمانی"
+            v-model="form.physicalstatus"
           />
         </section>
         <hr />
@@ -73,8 +92,8 @@
                   type="radio"
                   id="huey"
                   name="drone"
-                  value="سابقه بیماری روحی و روانی در خانواده"
-                  checked
+                  v-bind:value="'سابقه بیماری روحی و روانی در خانواده'"
+                  v-model="form.mentalstatus"
                 />
                 <label for="huey">سابقه بیماری روحی و روانی در خانواده</label>
               </div>
@@ -85,7 +104,8 @@
                   type="radio"
                   id="dewey"
                   name="drone"
-                  value="سابقه بیماری روحی و روانی مراجع"
+                  v-bind:value="'سابقه بیماری روحی و روانی مراجع'"
+                  v-model="form.mentalstatus"
                 />
                 <label for="dewey">سابقه بیماری روحی و روانی مراجع</label>
               </div>
@@ -96,7 +116,8 @@
                   type="radio"
                   id="louie"
                   name="drone"
-                  value="سابقه مصرف دارو و بستری"
+                  v-bind:value="'سابقه مصرف دارو و بستری'"
+                  v-model="form.mentalstatus"
                 />
                 <label for="louie">سابقه مصرف دارو و بستری</label>
               </div>
@@ -107,7 +128,8 @@
                   type="radio"
                   id="louie"
                   name="drone"
-                  value="سابقه سو مصرف مواد"
+                  v-bind:value="'سابقه سو مصرف مواد'"
+                  v-model="form.mentalstatus"
                 />
                 <label for="louie">سابقه سو مصرف مواد</label>
               </div>
@@ -118,7 +140,8 @@
                   type="radio"
                   id="louie"
                   name="drone"
-                  value="تحت درمان متخصص اعصاب و روان"
+                  v-bind:value="'تحت درمان متخصص اعصاب و روان'"
+                  v-model="form.mentalstatus"
                 />
                 <label for="louie">تحت درمان متخصص اعصاب و روان</label>
               </div>
@@ -129,7 +152,8 @@
                   type="radio"
                   id="louie"
                   name="drone"
-                  value="سابقه خودکشی"
+                  v-bind:value="'سابقه خودکشی'"
+                  v-model="form.mentalstatus"
                 />
                 <label for="louie">سابقه خودکشی</label>
               </div>
@@ -140,7 +164,8 @@
                   type="radio"
                   id="louie"
                   name="drone"
-                  value="خودزنی"
+                  v-bind:value="'خودزنی'"
+                  v-model="form.mentalstatus"
                 />
                 <label for="louie">خودزنی</label>
               </div>
@@ -151,7 +176,8 @@
                   type="radio"
                   id="louie"
                   name="drone"
-                  value="دگرزنی"
+                  v-bind:value="'دگرزنی'"
+                  v-model="form.mentalstatus"
                 />
                 <label for="louie">دگرزنی</label>
               </div>
@@ -171,7 +197,7 @@
                   id="huey"
                   name="drone"
                   value="مجرد"
-                  checked
+                  v-model="form.thestatus"
                 />
                 <label for="huey">مجرد</label>
               </div>
@@ -183,6 +209,7 @@
                   id="dewey"
                   name="drone"
                   value="متاهل"
+                  v-model="form.thestatus"
                 />
                 <label for="dewey">متاهل</label>
               </div>
@@ -194,6 +221,7 @@
                   id="louie"
                   name="drone"
                   value="مطلقه"
+                  v-model="form.thestatus"
                 />
                 <label for="louie">مطلقه</label>
               </div>
@@ -205,6 +233,7 @@
                   id="louie"
                   name="drone"
                   value="فوت همسر"
+                  v-model="form.thestatus"
                 />
                 <label for="louie">فوت همسر</label>
               </div>
@@ -216,6 +245,7 @@
                   id="louie"
                   name="drone"
                   value="همسر مفقودالاثر"
+                  v-model="form.thestatus"
                 />
                 <label for="louie">همسر مفقودالاثر</label>
               </div>
@@ -227,6 +257,7 @@
                   id="louie"
                   name="drone"
                   value="ترک منزل همسر"
+                  v-model="form.thestatus"
                 />
                 <label for="louie">ترک منزل همسر</label>
               </div>
@@ -238,6 +269,7 @@
                   id="louie"
                   name="drone"
                   value="همسر زندانی"
+                  v-model="form.thestatus"
                 />
                 <label for="louie">همسر زندانی</label>
               </div>
@@ -249,13 +281,21 @@
                   id="louie"
                   name="drone"
                   value="در حال طلاق"
+                  v-model="form.thestatus"
                 />
                 <label for="louie">در حال طلاق</label>
               </div>
             </fieldset>
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.thestatusdesc"
+            >
+توضیحات</textarea
+            >
           </div>
         </section>
         <hr />
@@ -266,6 +306,7 @@
             name="introfname"
             id="introfname"
             placeholder="نام معرف"
+            v-model="form.introfname"
           />
           <input
             class="input-field"
@@ -273,6 +314,7 @@
             name="introlname"
             id="introlname"
             placeholder="نام خانوادگی معرف"
+            v-model="form.introlname"
           />
           <input
             class="input-field"
@@ -280,6 +322,7 @@
             name="introphone"
             id="introphone"
             placeholder="شماره تماس"
+            v-model="form.introphone"
           />
         </section>
         <hr />
@@ -295,7 +338,7 @@
                   id="huey"
                   name="drone"
                   value="حمایت از زندانیان"
-                  checked
+                  v-model="form.intro"
                 />
                 <label for="huey">حمایت از زندانیان</label>
               </div>
@@ -307,6 +350,7 @@
                   id="dewey"
                   name="drone"
                   value="بهزیستی"
+                  v-model="form.intro"
                 />
                 <label for="dewey">بهزیستی</label>
               </div>
@@ -318,6 +362,7 @@
                   id="louie"
                   name="drone"
                   value="کمیته امداد"
+                  v-model="form.intro"
                 />
                 <label for="louie">کمیته امداد</label>
               </div>
@@ -329,6 +374,7 @@
                   id="louie"
                   name="drone"
                   value="بنیاد شهید"
+                  v-model="form.intro"
                 />
                 <label for="louie">بنیاد شهید</label>
               </div>
@@ -340,6 +386,7 @@
                   id="louie"
                   name="drone"
                   value="سازمانهای غیر دولتی"
+                  v-model="form.intro"
                 />
                 <label for="louie">سازمانهای غیر دولتی</label>
               </div>
@@ -351,13 +398,21 @@
                   id="louie"
                   name="drone"
                   value="سایر ارگانها"
+                  v-model="form.intro"
                 />
                 <label for="louie">سایر ارگانها</label>
               </div>
             </fieldset>
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.introdesc"
+            >
+توضیحات</textarea
+            >
           </div>
         </section>
         <hr />
@@ -374,6 +429,7 @@
                   name="drone"
                   value="بیمه کمیته امداد"
                   checked
+                  v-model="form.insurancestate"
                 />
                 <label for="huey">بیمه کمیته امداد</label>
               </div>
@@ -385,6 +441,7 @@
                   id="dewey"
                   name="drone"
                   value="بیمه تامین اجتماعی"
+                  v-model="form.insurancestate"
                 />
                 <label for="dewey">بیمه تامین اجتماعی</label>
               </div>
@@ -396,6 +453,7 @@
                   id="louie"
                   name="drone"
                   value="بیمه نیروهای مسلح"
+                  v-model="form.insurancestate"
                 />
                 <label for="louie">بیمه نیروهای مسلح</label>
               </div>
@@ -407,6 +465,7 @@
                   id="louie"
                   name="drone"
                   value="بیمه سلامت"
+                  v-model="form.insurancestate"
                 />
                 <label for="louie">بیمه سلامت</label>
               </div>
@@ -418,13 +477,21 @@
                   id="louie"
                   name="drone"
                   value="سایر ارگانها"
+                  v-model="form.insurancestate"
                 />
                 <label for="louie">سایر ارگانها</label>
               </div>
             </fieldset>
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.insurancedesc"
+            >
+توضیحات</textarea
+            >
           </div>
         </section>
         <hr />
@@ -441,6 +508,7 @@
                   name="drone"
                   value="فوت"
                   checked
+                  v-model="form.fatherstate"
                 />
                 <label for="huey">فوت</label>
               </div>
@@ -452,6 +520,7 @@
                   id="dewey"
                   name="drone"
                   value="بازنشسته"
+                  v-model="form.fatherstate"
                 />
                 <label for="dewey">بازنشسته</label>
               </div>
@@ -463,6 +532,7 @@
                   id="louie"
                   name="drone"
                   value="بیکار"
+                  v-model="form.fatherstate"
                 />
                 <label for="louie">بیکار</label>
               </div>
@@ -474,6 +544,7 @@
                   id="louie"
                   name="drone"
                   value="شاغل"
+                  v-model="form.fatherstate"
                 />
                 <label for="louie">شاغل</label>
               </div>
@@ -485,13 +556,21 @@
                   id="louie"
                   name="drone"
                   value="میزان سواد"
+                  v-model="form.fatherstate"
                 />
                 <label for="louie">میزان سواد</label>
               </div>
             </fieldset>
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.fatherstatedesc"
+            >
+توضیحات</textarea
+            >
           </div>
           <div>
             <input
@@ -500,6 +579,7 @@
               name="Fatherjob"
               id="fatherjob"
               placeholder="شغل فعلی پدر"
+              v-model="form.fatherjob"
             />
             <input
               class="input-field"
@@ -507,6 +587,7 @@
               name="Fatherjobadrs"
               id="fatherjobadrs"
               placeholder="آدرس محل کار فعلی"
+              v-model="form.fatherjobadrs"
             />
           </div>
         </section>
@@ -524,6 +605,7 @@
                   name="drone"
                   value="فوت"
                   checked
+                  v-model="form.motherstate"
                 />
                 <label for="huey">فوت</label>
               </div>
@@ -535,6 +617,7 @@
                   id="dewey"
                   name="drone"
                   value="متاهل"
+                  v-model="form.motherstate"
                 />
                 <label for="dewey">متاهل</label>
               </div>
@@ -546,6 +629,7 @@
                   id="louie"
                   name="drone"
                   value="مطلقه"
+                  v-model="form.motherstate"
                 />
                 <label for="louie">مطلقه</label>
               </div>
@@ -557,6 +641,7 @@
                   id="louie"
                   name="drone"
                   value="در حال طلاق"
+                  v-model="form.motherstate"
                 />
                 <label for="louie">در حال طلاق</label>
               </div>
@@ -568,6 +653,7 @@
                   id="louie"
                   name="drone"
                   value="ترک منزل"
+                  v-model="form.motherstate"
                 />
                 <label for="louie">ترک منزل</label>
               </div>
@@ -579,13 +665,21 @@
                   id="louie"
                   name="drone"
                   value="میزان سواد"
+                  v-model="form.motherstate"
                 />
                 <label for="louie">میزان سواد</label>
               </div>
             </fieldset>
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.motherstatedesc"
+            >
+توضیحات</textarea
+            >
           </div>
         </section>
         <hr />
@@ -602,6 +696,7 @@
                   name="drone"
                   value="وضعیت عمومی - سالم"
                   checked
+                  v-model="form.spousestate"
                 />
                 <label for="huey">وضعیت عمومی - سالم</label>
               </div>
@@ -613,6 +708,7 @@
                   id="dewey"
                   name="drone"
                   value="بیمار"
+                  v-model="form.spousestate"
                 />
                 <label for="dewey">بیمار</label>
               </div>
@@ -624,6 +720,7 @@
                   id="louie"
                   name="drone"
                   value="معتاد"
+                  v-model="form.spousestate"
                 />
                 <label for="louie">معتاد</label>
               </div>
@@ -635,6 +732,7 @@
                   id="louie"
                   name="drone"
                   value="از کار افتاده"
+                  v-model="form.spousestate"
                 />
                 <label for="louie">از کار افتاده</label>
               </div>
@@ -646,13 +744,21 @@
                   id="louie"
                   name="drone"
                   value="بدهکار"
+                  v-model="form.spousestate"
                 />
                 <label for="louie">بدهکار</label>
               </div>
             </fieldset>
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.spousestatedesc"
+            >
+توضیحات</textarea
+            >
           </div>
         </section>
         <hr />
@@ -663,6 +769,7 @@
             name="Spousefname"
             id="spousefname"
             placeholder="نام همسر"
+            v-model="form.spfname"
           />
           <input
             class="input-field"
@@ -670,6 +777,7 @@
             name="Spouselname"
             id="spouselname"
             placeholder="نام خانوادگی همسر"
+            v-model="form.splname"
           />
           <input
             class="input-field"
@@ -677,6 +785,7 @@
             name="Spouseidno"
             id="spouseidno"
             placeholder="کد ملی همسر"
+            v-model="form.spnationalno"
           />
           <input
             class="input-field"
@@ -684,6 +793,7 @@
             name="Spouseedu"
             id="spouseedu"
             placeholder="میزان سواد همسر"
+            v-model="form.speducation"
           />
           <input
             class="input-field"
@@ -691,6 +801,7 @@
             name="Spouseprejob"
             id="Spouseprejob"
             placeholder="شغل قبلی همسر"
+            v-model="form.splastjob"
           />
           <input
             class="input-field"
@@ -698,6 +809,7 @@
             name="Spousecrnjob"
             id="Spousecrnjob"
             placeholder="شغل فعلی همسر"
+            v-model="form.spjob"
           />
           <input
             class="input-field"
@@ -705,9 +817,16 @@
             name="Spousejobadrs"
             id="spousejobadrs"
             placeholder="آدرس محل کار فعلی"
+            v-model="form.spjobadrs"
           />
           <label for="spousebirthdate">تاریخ تولد</label>
-          <input class="input-field" type="date" name="Date" id="date" />
+          <input
+            class="input-field"
+            type="date"
+            name="Date"
+            id="date"
+            v-model="form.spbirthdate"
+          />
         </section>
         <hr />
         <section>
@@ -723,6 +842,7 @@
                   name="drone"
                   value="بله"
                   checked
+                  v-model="form.jailforsp"
                 />
                 <label for="huey">بله</label>
               </div>
@@ -734,13 +854,21 @@
                   id="dewey"
                   name="drone"
                   value="خیر"
+                  v-model="form.jailforsp"
                 />
                 <label for="dewey">خیر</label>
               </div>
             </fieldset>
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.jailforspdesc"
+            >
+توضیحات</textarea
+            >
           </div>
         </section>
         <hr />
@@ -796,6 +924,7 @@
                   name="drone"
                   value="بله"
                   checked
+                  v-model="form.jailforfamily"
                 />
                 <label for="huey">بله</label>
               </div>
@@ -807,13 +936,21 @@
                   id="dewey"
                   name="drone"
                   value="خیر"
+                  v-model="form.jailforfamily"
                 />
                 <label for="dewey">خیر</label>
               </div>
             </fieldset>
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.jailforfamilydesc"
+            >
+توضیحات</textarea
+            >
           </div>
         </section>
         <hr />
@@ -824,6 +961,7 @@
             name="numofkids"
             id="numofkinds"
             placeholder="تعداد فرزندان تحت تکفل"
+            v-model="form.kidstocare"
           />
           <input
             class="input-field"
@@ -831,6 +969,7 @@
             name="familynum"
             id="familynum"
             placeholder="تعداد اعضای خانواده"
+            v-model="form.familymembers"
           />
           <input
             class="input-field"
@@ -838,6 +977,7 @@
             name="staticphone"
             id="staticphone"
             placeholder="شماره تلفن ثابت"
+            v-model="form.permenantphone"
           />
           <input
             class="input-field"
@@ -845,6 +985,7 @@
             name="mobilephone"
             id="mobilephone"
             placeholder="شماره همراه"
+            v-model="form.cellphone"
           />
         </section>
         <hr />
@@ -861,6 +1002,7 @@
                   name="drone"
                   value="شخصی"
                   checked
+                  v-model="form.accomodation"
                 />
                 <label for="huey">شخصی</label>
               </div>
@@ -872,6 +1014,7 @@
                   id="dewey"
                   name="drone"
                   value="اجاره"
+                  v-model="form.accomodation"
                 />
                 <label for="dewey">اجاره</label>
               </div>
@@ -883,6 +1026,7 @@
                   id="dewey"
                   name="drone"
                   value="سایر"
+                  v-model="form.accomodation"
                 />
                 <label for="dewey">سایر</label>
               </div>
@@ -895,6 +1039,7 @@
               name="rent"
               id="rent"
               placeholder="میزان اجاره بها"
+              v-model="form.rent"
             />
             <input
               class="input-field"
@@ -902,10 +1047,18 @@
               name="rent2"
               id="rent2"
               placeholder="میزان رهن"
+              v-model="form.rahn"
             />
           </div>
           <div class="input-field">
-            <textarea name="Textarea" id="textarea" rows="8">توضیحات</textarea>
+            <textarea
+              name="Textarea"
+              id="textarea"
+              rows="8"
+              v-model="form.accomodationdesc"
+            >
+توضیحات</textarea
+            >
           </div>
           <div>
             <input
@@ -914,6 +1067,7 @@
               name="adrs"
               id="adrs"
               placeholder="آدرس منزل"
+              v-model="form.address"
             />
             <input
               class="input-field"
@@ -921,6 +1075,7 @@
               name="postcode"
               id="postcode"
               placeholder="کد پستی"
+              v-model="form.postalcode"
             />
           </div>
         </section>
@@ -940,6 +1095,7 @@
                   name="drone"
                   value="کمیته امداد"
                   checked
+                  v-model="form.otherorgsservs"
                 />
                 <label for="huey">کمیته امداد</label>
               </div>
@@ -951,6 +1107,7 @@
                   id="dewey"
                   name="drone"
                   value="بهزیستی"
+                  v-model="form.otherorgsservs"
                 />
                 <label for="dewey">بهزیستی</label>
               </div>
@@ -963,6 +1120,7 @@
               name="others"
               id="others"
               placeholder="سایر"
+              v-model="form.otherorgsservs"
             />
           </div>
         </section>
@@ -977,6 +1135,7 @@
                 name="incomesrc"
                 id="incomesrc"
                 placeholder="منبع کسب درآمد"
+                v-model="form.incomesrc"
               />
               <input
                 class="input-field"
@@ -984,10 +1143,16 @@
                 name="income"
                 id="income"
                 placeholder="میزان درآمد ماهانه به ریال"
+                v-model="form.income"
               />
             </div>
             <div class="input-field">
-              <textarea name="Textarea" id="textarea" rows="8">
+              <textarea
+                name="Textarea"
+                id="textarea"
+                rows="8"
+                v-model="form.skillsdesc"
+              >
 توانمندی های شخصی متقاضی و نوع مهارت هایی که دارد</textarea
               >
             </div>
@@ -1245,17 +1410,103 @@
             >
           </div>
         </section>
+        <hr />
+        <section>
+          <button @click="submitform">Submit</button>
+        </section>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "FQ12-01-00",
   data: () => {
-    return {};
+    return {
+      formcode: "FQ12-01-00",
+      nationalno: "",
+      form: {
+        referdate: "",
+        cfname: "",
+        clname: "",
+        father: "",
+        nationalno: "",
+        birthdate: "",
+        educationlvl: "",
+        major: "",
+        physicalstatus: "",
+        mentalstatus: "",
+        thestatus: "",
+        thestatusdesc: "",
+        introfname: "",
+        introlname: "",
+        introphone: "",
+        intro: "",
+        introdesc: "",
+        insurancestate: "",
+        insurancedesc: "",
+        fatherstate: "",
+        fatherstatedesc: "",
+        fatherjob: "",
+        fatherjobadrs: "",
+        motherstate: "",
+        motherstatedesc: "",
+        spousestate: "",
+        spousestatedesc: "",
+        spfname: "",
+        splname: "",
+        spnationalno: "",
+        spbirthdate: "",
+        speducation: "",
+        splastjob: "",
+        spjob: "",
+        spjobadrs: "",
+        jailforsp: "",
+        jailforspdesc: "",
+        spadct: "",
+        spadctdesc: "",
+        adtcstepsdesc: "",
+        jailforfamily: "",
+        jailforfamilydesc: "",
+        kidstocare: "",
+        familymembers: "",
+        // table ...
+        permenantphone: "",
+        cellphone: "",
+        accomodation: "",
+        rent: "",
+        rahn: "",
+        accomodationdesc: "",
+        address: "",
+        postalcode: "",
+        otherorgsservs: "",
+        income: "",
+        incomesrc: "",
+        monthlyincome: "",
+        skillsdesc: "",
+        favlist: [],
+        reqandgoal: "",
+        stateduration: "",
+        mainissues: "",
+      },
+    };
   },
-  methods: {},
+  methods: {
+    submitform() {
+      axios
+        .post("http://localhost:3000/forms", {
+          formcode: this.formcode,
+          nationalno: this.nationalno,
+          content: this.form,
+        })
+        .then((res) => {
+          console.log(res.status);
+          console.log(res.data);
+        });
+    },
+  },
 };
 </script>

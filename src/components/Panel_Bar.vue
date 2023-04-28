@@ -40,6 +40,8 @@ export default {
 .navbar {
   direction: rtl;
   text-align: right;
+  background-color: #02b075;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 ul {
@@ -47,12 +49,13 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #0b9fc2;
   color: white;
+  background-color: #02b075;
 }
 
 li {
   float: left;
+  background-color: #02b075;
 }
 
 .route-btn {
@@ -61,18 +64,6 @@ li {
   padding: 14px 16px;
   color: white;
   text-decoration: none;
-}
-
-.route-btn:hover {
-  background-color: #0b9fc2;
-  color: white;
-}
-
-.user-manager {
-  width: 94%;
-  margin: 3%;
-  border: blue 1px soild;
-  border-radius: 15px;
-  padding: 5%;
+  background-color: #02b075;
 }
 </style>

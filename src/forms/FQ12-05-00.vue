@@ -7,11 +7,23 @@
       <section>
         <div>
           <label for="docadate">تاریخ تنظیم:</label>
-          <input class="input-field" type="date" name="Date" id="date" />
+          <input
+            v-model="form.docdate"
+            class="input-field"
+            type="date"
+            name="Date"
+            id="date"
+          />
         </div>
         <div>
           <label for="docadate">تاریخ تولد:</label>
-          <input class="input-field" type="date" name="Date" id="date" />
+          <input
+            v-model="form.birthdate"
+            class="input-field"
+            type="date"
+            name="Date"
+            id="date"
+          />
         </div>
       </section>
       <section>
@@ -21,6 +33,7 @@
           name="clientfname"
           id="clientfname"
           placeholder="نام متقاضی"
+          v-model="form.cfname"
         />
         <input
           class="input-field"
@@ -28,6 +41,7 @@
           name="clientlname"
           id="clientlname"
           placeholder="نام خانوادگی متقاضی"
+          v-model="form.clname"
         />
         <input
           class="input-field"
@@ -35,6 +49,7 @@
           name="father"
           id="father"
           placeholder="نام پدر"
+          v-model="form.father"
         />
         <input
           class="input-field"
@@ -42,6 +57,7 @@
           name="shno"
           id="shno"
           placeholder="شماره شناسنامه"
+          v-model="form.idnumber"
         />
         <input
           class="input-field"
@@ -49,6 +65,7 @@
           name="nationalno"
           id="nationalno"
           placeholder="شماره ملی"
+          v-model="nationalno"
         />
         <input
           class="input-field"
@@ -56,6 +73,7 @@
           name="kids"
           id="kids"
           placeholder="تعداد عائله تحت تکفل"
+          v-model="form.numberofsupervisions"
         />
         <input
           class="input-field"
@@ -63,6 +81,7 @@
           name="city"
           id="city"
           placeholder="صادره از"
+          v-model="form.eligedby"
         />
         <input
           class="input-field"
@@ -70,9 +89,17 @@
           name="phone"
           id="phone"
           placeholder="شماره تماس"
+          v-model="form.phone"
         />
         <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="3">آدرس</textarea>
+          <textarea
+            v-model="form.address"
+            name="Textarea"
+            id="textarea"
+            rows="3"
+          >
+آدرس</textarea
+          >
         </div>
       </section>
     </div>
@@ -80,10 +107,42 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "HelloWorld",
+  name: "FQ12-05-00",
   data: () => {
-    return {};
+    return {
+      formcode: "FQ12-05-00",
+      nationalno: "",
+      form: {
+        docdate: "",
+        birthdate: "",
+        cfname: "",
+        clname: "",
+        father: "",
+        idnumber: "",
+        nationalno: "",
+        numberofsupervisions: "",
+        eligedby: "",
+        phone: "",
+        address: "",
+      },
+    };
+  },
+  methods: {
+    submitForm() {
+      axios
+        .post("http://localhost:3000/forms", {
+          formcode: this.formcode,
+          nationalno: this.nationalno,
+          content: this.form,
+        })
+        .then((res) => {
+          console.log(res.status);
+          console.log(res.data);
+        });
+    },
   },
 };
 </script>
