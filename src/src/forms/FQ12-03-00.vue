@@ -1,77 +1,68 @@
 <template>
-  <div>
-    <div class="paper-templ">
-      <div class="header">
-        <h3>بازدید از منزل</h3>
+  <div class="form-root">
+    <div class="form-paper">
+      <div class="paper-title">
+        <h4>بازدید از منزل</h4>
       </div>
-      <div class="paper-dates">
-        <label for="filedate">تاریخ تشکیل پرونده</label>
-        <input
-          class="input-field"
-          type="date"
-          name="Date"
-          id="date"
-          v-model="form.docdate"
-        />
-        <label for="filedate">تاریخ بازدید</label>
-        <input
-          class="input-field"
-          type="date"
-          name="Date"
-          id="date"
-          v-model="form.visitdate"
-        />
+      <div class="form-fields">
+        <div class="date-slop">
+          <label class="date-label">تاریخ تشکیل پرونده</label>
+          <date-picker class="date-picker" v-model="form.docdate" />
+        </div>
+        <div class="date-slop">
+          <label class="date-label">تاریخ بازدید</label>
+          <date-picker
+            class="date-picker"
+            type="date"
+            v-model="form.visitdate"
+          />
+        </div>
       </div>
-      <hr />
-      <section>
-        <input
-          class="input-field"
-          type="text"
-          name="Clientfname"
-          id="clientfname"
-          placeholder="نام متقاضی"
-          v-model="form.cfname"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="Clientlname"
-          id="clientlname"
-          placeholder="نام خانوادگی متقاضی"
-          v-model="form.clname"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="Clientcode"
-          id="clientcode"
-          placeholder="کد متقاضی"
-          v-model="form.clientcode"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="Staticphone"
-          id="staticphone"
-          placeholder="تلفن ثابت"
-          v-model="form.cpermphone"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="phone"
-          id="phone"
-          placeholder="تلفن"
-          v-model="form.ccellphone"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="address"
-          id="address"
-          placeholder="آدرس"
-          v-model="form.caddress"
-        />
+      <section class="sections">
+        <div class="sections">
+          <input
+            class="input-field"
+            type="text"
+            placeholder="نام متقاضی"
+            v-model="form.cfname"
+          />
+          <input
+            class="input-field"
+            type="text"
+            placeholder="نام خانوادگی متقاضی"
+            v-model="form.clname"
+          />
+          <input
+            class="input-field"
+            type="number"
+            placeholder="کد متقاضی"
+            v-model="form.clientcode"
+          />
+          <input
+            class="input-field"
+            type="number"
+            placeholder="کد ملی"
+            v-model="nationalno"
+          />
+          <input
+            class="input-field"
+            type="tel"
+            placeholder="تلفن ثابت"
+            v-model="form.cpermphone"
+          />
+          <input
+            class="input-field"
+            type="tel"
+            placeholder="تلفن"
+            v-model="form.ccellphone"
+          />
+          <input
+            class="input-field"
+            type="text"
+            placeholder="آدرس"
+            v-model="form.caddress"
+          />
+        </div>
       </section>
       <hr />
       <section>
@@ -79,33 +70,35 @@
           <fieldset>
             <legend>نوع مسکن متقاضی چیست؟</legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 type="radio"
                 id="huey"
-                name="drone"
-                value="huey"
+                name="accommodation"
+                value="خانه ویلایی"
                 v-model="form.accommodation"
               />
-              <label for="huey">خانه ویلایی</label>
+              <label class="radio-txt">خانه ویلایی</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="accommodation"
+                value="آپارتمان"
                 v-model="form.accommodation"
               />
-              <label for="dewey">آپارتمان</label>
+              <label class="radio-txt">آپارتمان</label>
             </div>
           </fieldset>
         </div>
         <div>
           <input
             class="input-field"
-            type="text"
+            type="number"
             name="Area"
             id="area"
             placeholder="متراژ"
@@ -116,36 +109,33 @@
           <fieldset>
             <legend>تعداد اتاق و فضای لازم برای اعضای خانواده:</legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.properspace"
                 type="radio"
-                id="huey"
-                name="drone"
-                value="huey"
-                checked
+                name="properspace"
+                value="مناسب است"
               />
-              <label for="huey">مناسب است</label>
+              <label class="radio-txt">مناسب است</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.properspace"
                 type="radio"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                name="properspace"
+                value="نامناسب است"
               />
-              <label for="dewey">نامناسب است</label>
+              <label class="radio-txt">نامناسب است</label>
             </div>
           </fieldset>
         </div>
         <div>
           <input
             class="input-field"
-            type="text"
-            name="numofroom"
-            id="numofroom"
+            type="number"
             placeholder="تعداد اتاق"
             v-model="form.rooms"
           />
@@ -153,78 +143,76 @@
       </section>
       <hr />
       <section>
-        <div id="radio-box">
+        <div class="radio-box">
           <fieldset>
             <legend>نوع سکونت متقاضی چیست؟</legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.accomtype"
                 type="radio"
-                id="huey"
-                name="drone"
-                value="huey"
-                checked
+                name="accomtype"
+                value="ملکی"
               />
-              <label for="huey">ملکی</label>
+              <label class="radio-txt">ملکی</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.accomtype"
                 type="radio"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                name="accomtype"
+                value="رهنی و اجاره‌ای"
               />
-              <label for="dewey">رهنی و اجاره‌ای</label>
+              <label class="radio-txt">رهنی و اجاره‌ای</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.accomtype"
                 type="radio"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                name="accomtype"
+                value="سازمانی"
               />
-              <label for="dewey">سازمانی</label>
+              <label class="radio-txt">سازمانی</label>
             </div>
           </fieldset>
         </div>
 
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
-            name="Textarea"
-            id="textarea"
+            class="textarea-input"
             rows="8"
             v-model="form.accomtypedesc"
+            placeholder="توضیحات: مبلغ اجاره و رهن..."
           >
-توضیحات: مبلغ اجاره و رهن...</textarea
-          >
+          </textarea>
         </div>
       </section>
       <hr />
       <section>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            class="textarea-input"
             v-model="form.buildingstatus"
             name="Textarea"
-            id="textarea"
             rows="8"
+            placeholder="وضعیت معماری ساختمان، رطوبت دیواره‌ها و سقف چگونه است؟"
           >
-وضعیت معماری ساختمان، رطوبت دیواره‌ها و سقف چگونه است؟</textarea
-          >
+          </textarea>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            class="textarea-input"
             v-model="form.rightcombo"
             name="Textarea"
-            id="textarea"
             rows="8"
+            placeholder="تعداد اتاق‌ها جوابگوی ترکیب سنی و جنسی خانواده است؟"
           >
-تعداد اتاق‌ها جوابگوی ترکیب سنی و جنسی خانواده است؟</textarea
-          >
+          </textarea>
         </div>
       </section>
       <hr />
@@ -233,454 +221,452 @@
           <fieldset>
             <legend>آیا محل سکونت از امکانات اولیه برخوردار است؟</legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.basicfacilities"
                 type="checkbox"
                 id="huey"
-                name="drone"
-                value="huey"
+                value="آب"
               />
-              <label for="huey">آب</label>
+              <label class="radio-txt">آب</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.basicfacilities"
                 type="checkbox"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                value="برق"
               />
-              <label for="dewey">برق</label>
+              <label class="radio-txt">برق</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.basicfacilities"
                 type="checkbox"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                value="گاز"
               />
-              <label for="dewey">گاز</label>
+              <label class="radio-txt">گاز</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.basicfacilities"
                 type="checkbox"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                value="تلفن"
               />
-              <label for="dewey">تلفن</label>
+              <label class="radio-txt">تلفن</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.basicfacilities"
                 type="checkbox"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                value="کولر"
               />
-              <label for="dewey">کولر</label>
+              <label class="radio-txt">کولر</label>
             </div>
           </fieldset>
         </div>
       </section>
       <hr />
       <section>
-        <div id="radio-box">
+        <div class="radio-box">
           <fieldset>
             <legend>
               آیا تسهیلات فرهنگی اجتماعی لازم در دسترس خانواده است؟
             </legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.socialaids"
                 type="checkbox"
                 id="huey"
-                name="drone"
-                value="huey"
+                value="مدرسه"
               />
-              <label for="huey">مدرسه</label>
+              <label class="radio-txt">مدرسه</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.socialaids"
                 type="checkbox"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                value="مسجد"
               />
-              <label for="dewey">مسجد</label>
+              <label class="radio-txt">مسجد</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.socialaids"
                 type="checkbox"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                value="کتابخانه"
               />
-              <label for="dewey">کتابخانه</label>
+              <label class="radio-txt">کتابخانه</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.socialaids"
                 type="checkbox"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                value="فرهنگسرا"
               />
-              <label for="dewey">فرهنگسرا</label>
+              <label class="radio-txt">فرهنگسرا</label>
             </div>
 
-            <div>
-              <input type="checkbox" id="dewey" name="drone" value="dewey" />
-              <label for="dewey">پارک</label>
+            <div class="radio-opt-2">
+              <input
+                class="radio-input-2"
+                v-model="form.socialaids"
+                type="checkbox"
+                id="dewey"
+                value="پارک"
+              />
+              <label class="radio-txt">پارک</label>
             </div>
           </fieldset>
         </div>
-        <div class="input-field">
-          <textarea name="Textarea" id="textarea" rows="8">
-خانواده متقاضی در این محل بومی هستند یا مهاجر؟</textarea
+        <div class="textarea-holder">
+          <textarea
+            class="textarea-input"
+            v-model="form.isnative"
+            name="Textarea"
+            id="textarea"
+            rows="8"
+            placeholder="خانواده متقاضی در این محل بومی هستند یا مهاجر؟"
           >
+          </textarea>
         </div>
       </section>
       <hr />
       <section>
-        <div id="radio-box">
+        <div class="radio-box">
           <fieldset>
             <legend>
               آیا محل سکونت متقاضی از نور آفتاب کافی و هوای سالم برخوردار است؟
             </legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.healthenv"
                 type="radio"
                 id="huey"
-                name="drone"
-                value="huey"
-                checked
+                name="healthenv"
+                value="بله"
               />
-              <label for="huey">بله</label>
+              <label class="radio-txt">بله</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.healthenv"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="healthenv"
+                value="خیر"
               />
-              <label for="dewey">خیر</label>
+              <label class="radio-txt">خیر</label>
             </div>
           </fieldset>
         </div>
       </section>
       <hr />
       <section>
-        <div id="radio-box">
+        <div class="radio-box">
           <fieldset>
             <legend>آیا حداقل وسایل زندگی فراهم است؟</legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.minequips"
                 type="checkbox"
-                id="huey"
-                name="drone"
-                value="huey"
+                value="یخچال"
               />
-              <label for="huey">یخچال</label>
+              <label class="radio-txt" for="huey">یخچال</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.minequips"
                 type="checkbox"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                value="اجاق گاز"
               />
-              <label for="dewey">اجاق گاز</label>
+              <label class="radio-txt" for="dewey">اجاق گاز</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.minequips"
                 type="checkbox"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                value="فرش"
               />
-              <label for="dewey">فرش</label>
+              <label class="radio-txt" for="dewey">فرش</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.minequips"
                 type="checkbox"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                value="تلویزیون"
               />
-              <label for="dewey">تلویزیون</label>
+              <label class="radio-txt" for="dewey">تلویزیون</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.minequips"
                 type="checkbox"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                value="بخاری"
               />
-              <label for="dewey">بخاری</label>
+              <label class="radio-txt" for="dewey">بخاری</label>
             </div>
           </fieldset>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            class="textarea-input"
             v-model="form.otherminequips"
-            name="Textarea"
-            id="textarea"
             rows="8"
+            placeholder="سایر: ......"
           >
-سایر: ......</textarea
-          >
+          </textarea>
         </div>
       </section>
       <hr />
       <section>
-        <div id="radio-box">
+        <div class="radio-box">
           <fieldset>
             <legend>
               آیا محیط خانه از نظافت لازم در حد متعارف برخوردار است؟
             </legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.cleanhouseenv"
                 type="radio"
-                id="huey"
-                name="drone"
-                value="huey"
+                name="cleanhouseenv"
+                value="ضعیف"
               />
-              <label for="huey">ضعیف</label>
+              <label class="radio-txt">ضعیف</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.cleanhouseenv"
                 type="radio"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                name="cleanhouseenv"
+                value="متوسط"
               />
-              <label for="dewey">متوسط</label>
+              <label class="radio-txt">متوسط</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.cleanhouseenv"
                 type="radio"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                name="cleanhouseenv"
+                value="عالی"
               />
-              <label for="dewey">عالی</label>
+              <label class="radio-txt">عالی</label>
             </div>
           </fieldset>
         </div>
       </section>
       <hr />
       <section>
-        <div id="radio-box">
+        <div class="radio-box">
           <fieldset>
             <legend>
               آیا امکان دسترسی به مراکز بهداشتی درمانی به راحتی وجود دارد؟
             </legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.healthcareaccess"
                 type="radio"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                name="healthcareaccess"
+                value="بله"
               />
-              <label for="dewey">بله</label>
+              <label class="radio-txt">بله</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.healthcareaccess"
                 type="radio"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                name="healthcareaccess"
+                value="خیر"
               />
-              <label for="dewey">خیر</label>
+              <label class="radio-txt">خیر</label>
             </div>
           </fieldset>
         </div>
       </section>
       <hr />
       <section>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            class="textarea-input"
             v-model="form.familytime"
-            name="Textarea"
-            id="textarea"
             rows="8"
+            placeholder="میزان حضور والدین در محل سکونت و در کنار فرزندان در شبانه روز تا چه حدی است؟"
           >
-            میزان حضور والدین در محل سکونت و در کنار فرزندان در شبانه روز تا چه حدی است؟
           </textarea>
         </div>
       </section>
       <hr />
       <section>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="آیا در بین اعضای خانواده متقاضی، فرد معتاد یا دارای سابقه خلافکاری اخلاقی یا بیماری روانی وجود دارد؟"
+            class="textarea-input"
             v-model="form.familycrimehistory"
-            name="Textarea"
-            id="textarea"
             rows="8"
           >
-             آیا در بین اعضای خانواده متقاضی، فرد معتاد یا دارای سابقه خلافکاری اخلاقی یا بیماری روانی وجود دارد؟
           </textarea>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="آیا عضوی از خانواده متقاضی، دارای سابقه زندانی یا کانون اصلاح و تربیت است؟"
+            class="textarea-input"
             v-model="form.jailforclient"
-            name="Textarea"
-            id="textarea"
             rows="8"
           >
-             آیا عضوی از خانواده متقاضی، دارای سابقه زندانی یا کانون اصلاح و تربیت است؟
           </textarea>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="آیا در بین اعضای خانواده متقاضی بیماری صعب العلاج یا معلول یا سالمند معلول وجود دارد؟"
+            class="textarea-input"
             v-model="form.disability"
-            name="Textarea"
-            id="textarea"
             rows="8"
           >
-             آیا در بین اعضای خانواده متقاضی بیماری صعب العلاج یا معلول یا سالمند معلول وجود دارد؟
           </textarea>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="آیا در بین اعضای خانواده متقاضی دانش آموز و دانشجو وجود دارد؟ چند نفر؟"
+            class="textarea-input"
             v-model="form.stdinfamily"
-            name="Textarea"
-            id="textarea"
             rows="8"
           >
-             آیا در بین اعضای خانواده متقاضی دانش آموز و دانشجو وجود دارد؟ چند نفر؟
           </textarea>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="وضعیت اشتغال و سربازی اعضای خانواده چگونه است؟ آیا فرد بیکاری وجود دارد؟"
+            class="textarea-input"
             v-model="form.familyempstate"
-            name="Textarea"
-            id="textarea"
             rows="8"
           >
-             وضعیت اشتغال و سربازی اعضای خانواده چگونه است؟ آیا فرد بیکاری وجود دارد؟
           </textarea>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="وضعیت ازدواج مراجع و خانواده او اعم از خواهران و برادران چگونه است؟"
+            class="textarea-input"
             v-model="form.clientandfamilymarriage"
-            name="Textarea"
-            id="textarea"
             rows="8"
           >
-             وضعیت ازدواج مراجع و خانواده او اعم از خواهران و برادران چگونه است؟
           </textarea>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="میزان بدهی خانواده یا اقساط ماهیانه چگونه است؟"
+            class="textarea-input"
             v-model="form.familyloans"
-            name="Textarea"
-            id="textarea"
             rows="8"
           >
-            میزان بدهی خانواده یا اقساط ماهیانه چگونه است؟
           </textarea>
         </div>
       </section>
       <hr />
       <section>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            class="textarea-input"
             v-model="form.evaluationresults"
-            name="Textarea"
-            id="textarea"
             rows="8"
+            placeholder="ارزیابی مددکار بازدیدکننده از جو حاکم بر خانواده و شرایط مراجعه کننده:"
           >
-            ارزیابی مددکار بازدیدکننده از جو حاکم بر خانواده و شرایط مراجعه کننده:
           </textarea>
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="نظر مدیر مددکاری"
+            class="textarea-input"
             v-model="form.opinion"
-            name="Textarea"
-            id="textarea"
             rows="8"
           >
-            نظر مدیر مددکاری
           </textarea>
         </div>
       </section>
       <hr />
       <section>
-        <div id="radio-box">
+        <div class="radio-box">
           <fieldset>
             <legend>با توجه به توضیحات ذکر شده نتیجه زیر حاصل شد:</legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.totalresults"
                 type="radio"
-                id="huey"
-                name="drone"
-                value="huey"
-                checked
+                name="totalresults"
+                value="متقاضی شرایط پذیرش در موسسه را ندارد"
               />
-              <label for="huey">متقاضی شرایط پذیرش در موسسه را ندارد</label>
+              <label class="radio-txt"
+                >متقاضی شرایط پذیرش در موسسه را ندارد</label
+              >
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.totalresults"
                 type="radio"
-                id="dewey"
-                name="drone"
-                value="dewey"
+                name="totalresults"
+                value="متقاضی شرایط پذیرش در موسسه را دارد و به واحد مشاوره معرفی میگردد"
               />
-              <label for="dewey"
-                >متقاضی شرایط پذیرش در موسسه را دارد و به واحد مشاوره معرفی
-                میگردد</label
-              >
+              <label class="radio-txt">
+                متقاضی شرایط پذیرش در موسسه را دارد و به واحد مشاوره معرفی
+                میگردد
+              </label>
             </div>
           </fieldset>
         </div>
       </section>
       <hr />
       <section>
-        <button @click="submitForm">ذخیره</button>
+        <button class="thebtn" @click="submitForm">ذخیره</button>
       </section>
     </div>
   </div>
@@ -714,10 +700,11 @@ export default {
         accomtypedesc: "",
         buildingstatus: "",
         rightcombo: "",
-        basicfacilities: "",
-        socialaids: "",
+        basicfacilities: [],
+        socialaids: [],
+        isnative: "",
         healthenv: "",
-        minequips: "",
+        minequips: [],
         otherminequips: "",
         cleanhouseenv: "",
         healthcareaccess: "",
@@ -753,34 +740,92 @@ export default {
 </script>
 
 <style>
-.paper-templ {
-  direction: rtl;
-  margin: 20px;
-  padding: 3%;
-  border: #0b9fc2 2px solid;
-  border-radius: 15px;
-}
-
-.widget-list {
-  direction: rtl;
-  margin: 5%;
-  width: 90%;
-  padding: 3%;
-  border: solid 1px #0b9fc2;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: right;
-  align-items: start;
-}
-
-.radio-opt {
-  width: 33%;
-  margin: 0px;
-  float: right;
-}
-
-.radio-input {
-  width: 30px;
+.form-root {
+  overflow: hidden;
+  width: 100%;
+  padding: 2%;
   margin: 0;
+}
+
+.form-paper {
+  width: 100%;
+  border: black 1px solid;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.paper-title {
+  text-align: center;
+  padding: 40px;
+}
+
+.form-fields {
+  width: 100%;
+  padding: 20px;
+}
+
+.input-field-2 {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-holder {
+  width: 100%;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thebtn {
+  background-color: #006df3;
+  margin: 20px 15px 10px;
+  border-radius: 5px;
+}
+
+.date-picker {
+  width: 60%;
+}
+
+@media (min-width: 800px) {
+  .date-slop {
+    width: 50%;
+    float: right;
+  }
+
+  .input-field-2 {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .date-label {
+    width: 80px;
+  }
+
+  legend {
+    font-size: 1rem;
+  }
+
+  .radio-opt-2 {
+    float: right;
+  }
+
+  .radio-input-2 {
+    width: 30px;
+    padding: 5px;
+  }
+
+  .radio-txt {
+    width: 270px;
+  }
 }
 </style>

@@ -4,58 +4,41 @@
       <div class="paper-title">
         <h4>آشنایی با دوره های آموزشی مؤسسه خیریه روزبه</h4>
       </div>
-      <section class="sections">
-        <input
-          class="input-field"
-          type="text"
-          placeholder="نام متقاضی"
-          v-model="form.cfname"
-        />
-        <input
-          class="input-field"
-          type="text"
-          placeholder="نام خانوادگی متقاضی"
-          v-model="form.clname"
-        />
-        <input
-          class="input-field"
-          type="text"
-          placeholder="نام پدر"
-          v-model="form.father"
-        />
-        <input
-          class="input-field"
-          type="number"
-          placeholder="شماره ملی"
-          v-model="nationalno"
-        />
-        <input
-          class="input-field"
-          type="text"
-          placeholder="نام واحد آموزشی"
-          v-model="form.edudepname"
-        />
+      <section>
+        <label class="labels"
+          ><span>نام متقاضی:</span> {{ form.content.cfname }}</label
+        >
+        <label class="labels"
+          ><span>نام خانوادگی متقاضی:</span> {{ form.content.clname }}</label
+        >
+        <label class="labels"
+          ><span>نام پدر:</span> {{ form.content.father }}</label
+        >
+        <label class="labels"
+          ><span>شماره ملی:</span> {{ form.nationalno }}</label
+        >
+        <label class="labels"
+          ><span>نام واحد آموزشی:</span> {{ form.content.edudepname }}</label
+        >
       </section>
-      <hr />
-      <section class="sections">
+      <section>
         <div class="text-holder">
           <p class="paragraph">
             اینجانب
-            <span>{{ form.cfname }} {{ form.clname }}</span>
+            <span>{{ form.content.cfname }} {{ form.content.clname }}</span>
             فرزند
-            <span>{{ form.father }}</span>
+            <span>{{ form.content.father }}</span>
             به شماره ملی
-            <span>{{ nationalno }}</span>
+            <span>{{ form.nationalno }}</span>
             با مطالعه و اطلاع کامل سرفصل های آموزشی موسسه خیریه روزبه، مایلم در
             واحد آموزشی
-            <span>{{ form.edudepname }}</span>
+            <span>{{ form.content.edudepname }}</span>
             مشغول به یادگیری و مهارت آموزی شوم.
           </p>
         </div>
       </section>
-      <hr />
       <section class="sections">
-        <div class="textarea-holder">
+        <div class="textarea-input">
           <table>
             <tr>
               <th>ردیف</th>
@@ -144,9 +127,8 @@
           </table>
         </div>
       </section>
-      <hr />
       <section class="sections">
-        <div class="textarea-holder">
+        <div class="textarea-input">
           <table>
             <tr>
               <th>ردیف</th>
@@ -236,8 +218,8 @@
         </div>
       </section>
       <hr />
-      <section class="sections">
-        <button class="thebtn" @click="submitForm">ذخیره</button>
+      <section>
+        <button class="close" @click="deleteit(form._id)">حذف</button>
       </section>
     </div>
   </div>
@@ -250,29 +232,38 @@ export default {
   name: "FQ12-06-00",
   data: () => {
     return {
-      formcode: "FQ12-06-00",
-      nationalno: "",
-      form: {
-        cfname: "",
-        clname: "",
-        father: "",
-        edudepname: "",
-      },
+      form: {},
     };
   },
   methods: {
-    submitForm() {
-      axios
-        .post("http://localhost:3000/forms", {
-          formcode: this.formcode,
-          nationalno: this.nationalno,
-          content: this.form,
-        })
+    async deleteit(id) {
+      await axios
+        .delete("http://localhost:3000/forms/" + id)
         .then((res) => {
-          console.log(res.status);
-          console.log(res.data);
+          if (res.status == 200) {
+            alert("فرم حذف شد");
+          } else {
+            alert("خطا در پردازش");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
+  },
+  async mounted() {
+    await axios
+      .get("http://localhost:3000/forms/single/" + this.$route.params.id)
+      .then((res) => {
+        if (res.status == 200) {
+          this.form = res.data;
+        } else {
+          alert("خطا در پردازش درخواست");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>
@@ -290,6 +281,7 @@ export default {
   border: black 1px solid;
   padding: 20px;
   margin: 10px auto;
+  text-align: justify;
 }
 
 .paper-title {
@@ -302,73 +294,21 @@ export default {
   padding: 20px;
 }
 
-.input-field-2 {
-  width: 200px;
-  padding: 10px;
+.labels {
+  width: 50%;
+}
+
+span {
+  font-weight: 600;
+}
+
+table,
+tr,
+th {
   text-align: center;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.textarea-holder {
-  width: 100%;
-}
-
-.textarea-input {
-  width: 100%;
-  padding: 10px 15px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.thebtn {
-  background-color: #006df3;
-  margin: 20px 15px 10px;
-  border-radius: 5px;
-}
-
-.sections {
-  padding: 20px;
-  margin: 30px;
-}
-
-.date-picker {
-  width: 60%;
-}
-
-@media (min-width: 800px) {
-  .date-slop {
-    width: 50%;
-    float: right;
-  }
-
-  .input-field-2 {
-    width: 200px;
-    margin: 10px;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .date-label {
-    width: 80px;
-  }
-
-  legend {
-    font-size: 1rem;
-  }
-
-  .radio-opt-2 {
-    float: right;
-  }
-
-  .radio-input-2 {
-    width: 30px;
-    padding: 5px;
-  }
-
-  .radio-txt {
-    width: 270px;
-  }
+.paragraph {
+  font-family: "Vazir";
 }
 </style>

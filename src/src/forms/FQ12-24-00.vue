@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <div class="paper-templ">
-      <section class="header">
+  <div class="form-root">
+    <div class="form-paper">
+      <section class="paper-title">
         <h3>حضور و غیاب مددجو در واحد آموزش</h3>
       </section>
-      <hr />
-      <section>
-        <div>
-          <label for="adddate">تاریخ شروع دوره:</label>
-          <input class="input-field" type="date" name="Date" id="date" />
+      <section class="sections">
+        <div class="date-slop">
+          <label class="date-label" for="adddate">تاریخ شروع دوره:</label>
+          <date-picker class="date-picker" v-model="form.startdate" />
         </div>
       </section>
-      <hr />
-      <section>
+      <section class="sections">
         <input
           class="input-field"
           type="text"
@@ -36,10 +34,16 @@
           placeholder="نام واحد آموزشی"
           v-model="form.eduunit"
         />
+        <input
+          class="input-field"
+          type="number"
+          name="nationalid"
+          placeholder="کد ملی"
+          v-model="nationalno"
+        />
       </section>
-      <hr />
-      <section>
-        <div class="input-field">
+      <section class="sections">
+        <div class="textarea-input">
           <table>
             <tr>
               <th>ردیف</th>
@@ -50,19 +54,18 @@
               <th>توضیحات</th>
             </tr>
             <tr>
-              <td>1</td>
-              <td>$100</td>
-              <td>January</td>
-              <td>$100</td>
-              <td>January</td>
-              <td>$100</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
           </table>
         </div>
       </section>
-      <hr />
-      <section>
-        <button @click="submitForm">Submit</button>
+      <section class="sections">
+        <button class="thebtn" @click="submitForm">ذخیره</button>
       </section>
     </div>
   </div>
@@ -103,15 +106,92 @@ export default {
 </script>
 
 <style>
-.paper-templ {
-  direction: rtl;
-  margin: 20px;
-  padding: 3%;
-  border: #0b9fc2 2px solid;
-  border-radius: 15px;
+.form-root {
+  overflow: hidden;
+  width: 100%;
+  padding: 2%;
+  margin: 0;
 }
 
-table {
+.form-paper {
   width: 100%;
+  border: black 1px solid;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.paper-title {
+  text-align: center;
+  padding: 40px;
+}
+
+.form-fields {
+  width: 100%;
+  padding: 20px;
+}
+
+.input-field-2 {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-holder {
+  width: 100%;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thebtn {
+  background-color: #006df3;
+  margin: 20px 15px 10px;
+  border-radius: 5px;
+}
+
+.date-picker {
+  width: 60%;
+}
+
+@media (min-width: 800px) {
+  .date-slop {
+    width: 50%;
+    float: right;
+  }
+
+  .input-field-2 {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .date-label {
+    width: 80px;
+  }
+
+  legend {
+    font-size: 1rem;
+  }
+
+  .radio-opt-2 {
+    float: right;
+  }
+
+  .radio-input-2 {
+    width: 30px;
+    padding: 5px;
+  }
+
+  .radio-txt {
+    width: 270px;
+  }
 }
 </style>

@@ -6,9 +6,21 @@
       </section>
       <section>
         <label for="adddate">تاریخ جذب:</label>
-        <date-picker class="date-picker" v-model="form.admissiondate" />
+        <input
+          v-model="form.admissiondate"
+          class="input-field"
+          type="date"
+          name="Date"
+          id="date"
+        />
         <label for="adddate">تاریخ اتمام دوره آموزشی:</label>
-        <date-picker class="date-picker" v-model="form.courseenddate" />
+        <input
+          v-model="form.courseenddate"
+          class="input-field"
+          type="date"
+          name="Date"
+          id="date"
+        />
       </section>
       <hr />
       <section>
@@ -30,7 +42,7 @@
         />
         <input
           class="input-field"
-          type="number"
+          type="text"
           name="clname"
           id="clname"
           placeholder="کد ملی مددجو"
@@ -114,7 +126,7 @@
       </section>
       <hr />
       <section>
-        <button @click="submitForm">Submit</button>
+        <button class="close" @click="deleteit(form._id)">حذف</button>
       </section>
     </div>
   </div>
@@ -127,30 +139,38 @@ export default {
   name: "FQ12-10-00",
   data: () => {
     return {
-      formcode: "FQ12-10-00",
-      nationalno: "",
-      form: {
-        admissiondate: "",
-        courseenddate: "",
-        cfname: "",
-        clname: "",
-        edudep: "",
-      },
+      form: {},
     };
   },
   methods: {
-    submitForm() {
-      axios
-        .post("http://localhost:3000/forms", {
-          formcode: this.formcode,
-          nationalno: this.nationalno,
-          content: this.form,
-        })
+    async deleteit(id) {
+      await axios
+        .delete("http://localhost:3000/forms/" + id)
         .then((res) => {
-          console.log(res.status);
-          console.log(res.data);
+          if (res.status == 200) {
+            alert("فرم حذف شد");
+          } else {
+            alert("خطا در پردازش");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
+  },
+  async created() {
+    await axios
+      .get("http://localhost:3000/forms/single/" + this.$route.params.id)
+      .then((res) => {
+        if (res.status == 200) {
+          this.form = res.data;
+        } else {
+          alert("خطا در پردازش درخواست");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>

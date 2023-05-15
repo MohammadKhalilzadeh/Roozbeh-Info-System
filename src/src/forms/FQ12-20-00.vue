@@ -1,160 +1,166 @@
 <template>
-  <div>
-    <div class="paper-templ">
-      <section class="header">
-        <h3>معرفی به اشتغال خانگی</h3>
+  <div class="form-root">
+    <div class="form-paper">
+      <section class="paper-title">
+        <h4>معرفی به اشتغال خانگی</h4>
       </section>
-      <hr />
-      <section>
+      <section class="form-fields">
         <div>
-          <label for="adddate">تاریخ شروع:</label>
+          <div class="date-slop">
+            <label class="date-label" for="adddate">تاریخ شروع:</label>
+            <date-picker class="date-picker" v-model="form.startdate" />
+          </div>
+          <div class="date-slop">
+            <label class="date-label" for="adddate">تاریخ تولد:</label>
+            <date-picker class="date-picker" v-model="form.enddate" />
+          </div>
+        </div>
+      </section>
+      <section class="sections">
+        <div class="sections">
           <input
-            v-model="form.startdate"
             class="input-field"
-            type="date"
-            name="Date"
-            id="date"
+            type="text"
+            name="fname"
+            id="fname"
+            placeholder="نام مددجو"
+            v-model="form.cfname"
           />
-          <label for="adddate">تاریخ تولد:</label>
           <input
-            v-model="form.enddate"
             class="input-field"
-            type="date"
-            name="Date"
-            id="date"
+            type="text"
+            name="lname"
+            id="lname"
+            placeholder="نام خانوادگی مددجو"
+            v-model="form.clname"
+          />
+          <input
+            class="input-field"
+            type="number"
+            name="skill"
+            placeholder="کد ملی"
+            v-model="nationalno"
+          />
+          <input
+            class="input-field"
+            type="text"
+            name="skill"
+            placeholder="نام پدر"
+            v-model="form.father"
+          />
+          <input
+            class="input-field"
+            type="text"
+            name="nationalid"
+            placeholder="تحصیلات"
+            v-model="form.education"
           />
         </div>
       </section>
       <hr />
-      <section>
-        <input
-          class="input-field"
-          type="text"
-          name="fname"
-          id="fname"
-          placeholder="نام مددجو"
-          v-model="form.cfname"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="lname"
-          id="lname"
-          placeholder="نام خانوادگی مددجو"
-          v-model="form.clname"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="skill"
-          placeholder="نام پدر"
-          v-model="form.father"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="nationalid"
-          placeholder="تحصیلات"
-          v-model="form.education"
-        />
-      </section>
-      <hr />
-      <section>
+      <section class="sections">
         <div id="radio-box">
           <fieldset>
             <legend>وضعیت تاهل؟</legend>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.maritalstatus"
                 type="radio"
                 id="huey"
-                name="drone"
-                value="huey"
-                checked
+                name="maritalstatus"
+                value="مجرد"
               />
-              <label for="huey">مجرد</label>
+              <label class="radio-txt" for="huey">مجرد</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.maritalstatus"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="maritalstatus"
+                value="متاهل"
               />
-              <label for="dewey">متاهل</label>
+              <label class="radio-txt" for="dewey">متاهل</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.maritalstatus"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="maritalstatus"
+                value="مطلقه"
               />
-              <label for="dewey">مطلقه</label>
+              <label class="radio-txt" for="dewey">مطلقه</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.maritalstatus"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="maritalstatus"
+                value="فوت همسر"
               />
-              <label for="dewey">فوت همسر</label>
+              <label class="radio-txt" for="dewey">فوت همسر</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.maritalstatus"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="maritalstatus"
+                value="همسر مفقود الاثر"
               />
-              <label for="dewey">همسر مفقود الاثر</label>
+              <label class="radio-txt" for="dewey">همسر مفقود الاثر</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.maritalstatus"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="maritalstatus"
+                value="ترک منزل همسر"
               />
-              <label for="dewey">ترک منزل همسر</label>
+              <label class="radio-txt" for="dewey">ترک منزل همسر</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.maritalstatus"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="maritalstatus"
+                value="زندانی همسر"
               />
-              <label for="dewey">زندانی همسر</label>
+              <label class="radio-txt" for="dewey">زندانی همسر</label>
             </div>
 
-            <div>
+            <div class="radio-opt-2">
               <input
+                class="radio-input-2"
                 v-model="form.maritalstatus"
                 type="radio"
                 id="dewey"
-                name="drone"
-                value="dewey"
+                name="maritalstatus"
+                value="در حال طلاق"
               />
-              <label for="dewey">در حال طلاق</label>
+              <label class="radio-txt" for="dewey">در حال طلاق</label>
             </div>
           </fieldset>
         </div>
-        <div>
+        <div class="sections">
           <input
             class="input-field"
             type="text"
@@ -170,7 +176,7 @@
             v-model="form.incapability"
           />
         </div>
-        <div>
+        <div class="sections">
           <input
             class="input-field"
             type="text"
@@ -186,15 +192,14 @@
             v-model="form.cell"
           />
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
             v-model="form.theory"
-            name="Textarea"
-            id="textarea"
+            class="textarea-input"
             rows="3"
+            placeholder="نظریه مشاور / مددکار"
           >
-  نظریه مشاور / مددکار</textarea
-          >
+          </textarea>
         </div>
         <div>
           <input
@@ -207,7 +212,7 @@
         </div>
       </section>
       <hr />
-      <section>
+      <section class="sections">
         <div>
           <input
             class="input-field"
@@ -216,8 +221,6 @@
             placeholder="واحد محترم"
             v-model="form.unit"
           />
-        </div>
-        <div>
           <input
             class="input-field"
             type="text"
@@ -235,15 +238,14 @@
             v-model="form.clname"
           />
         </div>
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
             v-model="form.skills"
-            name="Textarea"
-            id="textarea"
+            class="textarea-input"
             rows="2"
+            placeholder="مهارتها و توانایی ها"
           >
-  مهارتها و توانایی ها</textarea
-          >
+          </textarea>
         </div>
         <div>
           <input
@@ -256,21 +258,20 @@
         </div>
       </section>
       <hr />
-      <section>
-        <div class="input-field">
+      <section class="sections">
+        <div class="textarea-holder">
           <textarea
             v-model="form.finalres"
-            name="Textarea"
-            id="textarea"
+            class="textarea-input"
             rows="2"
+            placeholder="نتیجه نهایی"
           >
-  نتیجه نهایی</textarea
-          >
+          </textarea>
         </div>
       </section>
       <hr />
-      <section>
-        <button @click="submitForm">Submit</button>
+      <section class="sections">
+        <button class="thebtn" @click="submitForm">ذخیره</button>
       </section>
     </div>
   </div>
@@ -288,10 +289,12 @@ export default {
       form: {
         startdate: "",
         enddate: "",
+        // 1
         cfname: "",
         clname: "",
         father: "",
         education: "",
+        // 2
         maritalstatus: "",
         anyillness: "",
         incapability: "",
@@ -299,6 +302,7 @@ export default {
         cell: "",
         theory: "",
         madadkarimngr: "",
+        // 3
         unit: "",
         skills: "",
         edumngr: "",
@@ -324,15 +328,92 @@ export default {
 </script>
 
 <style>
-.paper-templ {
-  direction: rtl;
-  margin: 20px;
-  padding: 3%;
-  border: #0b9fc2 2px solid;
-  border-radius: 15px;
+.form-root {
+  overflow: hidden;
+  width: 100%;
+  padding: 2%;
+  margin: 0;
 }
 
-table {
+.form-paper {
   width: 100%;
+  border: black 1px solid;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.paper-title {
+  text-align: center;
+  padding: 40px;
+}
+
+.form-fields {
+  width: 100%;
+  padding: 20px;
+}
+
+.input-field-2 {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-holder {
+  width: 100%;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thebtn {
+  background-color: #006df3;
+  margin: 20px 15px 10px;
+  border-radius: 5px;
+}
+
+.date-picker {
+  width: 60%;
+}
+
+@media (min-width: 800px) {
+  .date-slop {
+    width: 50%;
+    float: right;
+  }
+
+  .input-field-2 {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .date-label {
+    width: 80px;
+  }
+
+  legend {
+    font-size: 1rem;
+  }
+
+  .radio-opt-2 {
+    float: right;
+  }
+
+  .radio-input-2 {
+    width: 30px;
+    padding: 5px;
+  }
+
+  .radio-txt {
+    width: 270px;
+  }
 }
 </style>

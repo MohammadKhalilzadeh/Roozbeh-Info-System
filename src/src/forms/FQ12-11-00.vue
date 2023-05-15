@@ -1,138 +1,140 @@
 <template>
-  <div>
-    <div class="paper-templ">
-      <section class="header">
-        <h3>معرفی به واحد فرهنگی موسسه خیریه روزبه</h3>
+  <div class="form-root">
+    <div class="form-paper">
+      <section class="paper-title">
+        <h4>معرفی به واحد فرهنگی موسسه خیریه روزبه</h4>
       </section>
-      <section>
+      <section class="sections">
+        <input
+          class="input-field"
+          type="number"
+          name="phone"
+          id="phone"
+          placeholder="کد ملی"
+          v-model="nationalno"
+        />
+      </section>
+      <section class="sections">
         <h4>مشخصات مددجو</h4>
-        <div>
-          <label for="adddate">تاریخ شروع دوره:</label>
-          <input
-            v-model="form.begindate"
-            class="input-field"
-            type="date"
-            name="Date"
-            id="date"
-          />
-          <label for="adddate">تاریخ اتمام دوره:</label>
-          <input
-            v-model="form.finishdate"
-            class="input-field"
-            type="date"
-            name="Date"
-            id="date"
-          />
+        <div class="sections">
+          <div class="date-slop">
+            <label class="date-label">تاریخ شروع دوره:</label>
+            <date-picker class="date-picker" v-model="form.begindate" />
+          </div>
+          <div class="date-slop">
+            <label class="date-label">تاریخ اتمام دوره:</label>
+            <date-picker class="date-picker" v-model="form.finishdate" />
+          </div>
         </div>
       </section>
-      <hr />
-      <section>
+      <section class="sections">
         <div class="radio-box">
           <fieldset>
             <legend>وضعیت تاهل</legend>
 
-            <div class="radio-opt">
+            <div class="radio-opt-2">
               <input
-                class="radio-input"
+                class="radio-input-2"
                 type="radio"
                 id="huey"
                 name="drone"
                 value="مجرد"
                 v-model="form.maritalstatus"
               />
-              <label for="huey">مجرد</label>
+              <label class="radio-txt">مجرد</label>
             </div>
 
-            <div class="radio-opt">
+            <div class="radio-opt-2">
               <input
-                class="radio-input"
+                class="radio-input-2"
                 type="radio"
                 id="dewey"
                 name="drone"
                 value="متاهل"
                 v-model="form.maritalstatus"
               />
-              <label for="dewey">متاهل</label>
+              <label class="radio-txt">متاهل</label>
             </div>
 
-            <div class="radio-opt">
+            <div class="radio-opt-2">
               <input
-                class="radio-input"
+                class="radio-input-2"
                 type="radio"
                 id="louie"
                 name="drone"
                 value="مطلقه"
                 v-model="form.maritalstatus"
               />
-              <label for="louie">مطلقه</label>
+              <label class="radio-txt">مطلقه</label>
             </div>
 
-            <div class="radio-opt">
+            <div class="radio-opt-2">
               <input
-                class="radio-input"
+                class="radio-input-2"
                 type="radio"
                 id="louie"
                 name="drone"
                 value="فوت همسر"
                 v-model="form.maritalstatus"
               />
-              <label for="louie">فوت همسر</label>
+              <label class="radio-txt">فوت همسر</label>
             </div>
 
-            <div class="radio-opt">
+            <div class="radio-opt-2">
               <input
-                class="radio-input"
+                class="radio-input-2"
                 type="radio"
                 id="louie"
                 name="drone"
                 value="همسر مفقودالاثر"
                 v-model="form.maritalstatus"
               />
-              <label for="louie">همسر مفقودالاثر</label>
+              <label class="radio-txt">همسر مفقودالاثر</label>
             </div>
 
-            <div class="radio-opt">
+            <div class="radio-opt-2">
               <input
-                class="radio-input"
+                class="radio-input-2"
                 type="radio"
                 id="louie"
                 name="drone"
                 value="ترک منزل همسر"
                 v-model="form.maritalstatus"
               />
-              <label for="louie">ترک منزل همسر</label>
+              <label class="radio-txt">ترک منزل همسر</label>
             </div>
 
-            <div class="radio-opt">
+            <div class="radio-opt-2">
               <input
-                class="radio-input"
+                class="radio-input-2"
                 type="radio"
                 id="louie"
                 name="drone"
                 value="همسر زندانی"
                 v-model="form.maritalstatus"
               />
-              <label for="louie">همسر زندانی</label>
+              <label class="radio-txt">همسر زندانی</label>
             </div>
 
-            <div class="radio-opt">
+            <div class="radio-opt-2">
               <input
-                class="radio-input"
+                class="radio-input-2"
                 type="radio"
                 id="louie"
                 name="drone"
                 value="در حال طلاق"
                 v-model="form.maritalstatus"
               />
-              <label for="louie">در حال طلاق</label>
+              <label class="radio-txt">در حال طلاق</label>
             </div>
           </fieldset>
         </div>
       </section>
-      <hr />
-      <section>
-        <h4>مشخصات همسر</h4>
+      <section class="sections">
         <div>
+          <h4>مشخصات همسر</h4>
+        </div>
+        <div class="sections">
           <input
             class="input-field"
             type="text"
@@ -200,41 +202,42 @@
         </div>
       </section>
       <hr />
-      <section>
+      <!-- <section class="sections">
         <h4>مشخصات فرزندان مددجو (حمایت شونده)</h4>
-        <div class="input-field">
-          <table>
-            <tr>
-              <th>نام</th>
-              <th>نام خانوادگی</th>
-              <th>کد ملی</th>
-              <th>تاریخ تولد</th>
-              <th>شماره تماس</th>
-              <th>میزان تحصیلات</th>
-              <th>شماره تماس و آدرس محل تحصیل</th>
-              <th>وضعیت اشتغال</th>
-              <th>شماره تماس و آدرس محل کار</th>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </table>
+        <div class="sections">
+          <div class="textarea-input">
+            <table>
+              <tr>
+                <th>نام</th>
+                <th>نام خانوادگی</th>
+                <th>کد ملی</th>
+                <th>تاریخ تولد</th>
+                <th>شماره تماس</th>
+                <th>میزان تحصیلات</th>
+                <th>شماره تماس و آدرس محل تحصیل</th>
+                <th>وضعیت اشتغال</th>
+                <th>شماره تماس و آدرس محل کار</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </table>
+          </div>
         </div>
-      </section>
-      <hr />
-      <section>
-        <div>
+      </section> -->
+      <section class="sections">
+        <div class="sections-2">
           <input
             class="input-field"
-            type="text"
+            type="tel"
             name="phone"
             id="phone"
             placeholder="شماره تماس ثابت"
@@ -242,41 +245,36 @@
           />
           <input
             class="input-field"
-            type="text"
+            type="tel"
             name="familyphone"
             id="familyphone"
             placeholder="شماره تلفن همراه مادر یا پدر"
             v-model="form.parentsphone"
           />
         </div>
-        <div>
-          <div class="input-field">
+        <div class="sections-2">
+          <div class="textarea-holder">
             <textarea
+              class="textarea-input"
               v-model="form.resadrs"
-              name="Textarea"
-              id="textarea"
               rows="3"
+              placeholder="آدرس محل سکونت"
             >
-                آدرس محل سکونت
-              </textarea
-            >
+            </textarea>
           </div>
-          <div class="input-field">
+          <div class="textarea-holder">
             <textarea
+              class="textarea-input"
               v-model="form.kidsmentalstate"
-              name="Textarea"
-              id="textarea"
               rows="3"
+              placeholder="وضعیت سلامت جسمانی و روانی هر یک از فرزندان"
             >
-                وضعیت سلامت جسمانی و روانی هر یک از فرزندان
-              </textarea
-            >
+            </textarea>
           </div>
         </div>
       </section>
-      <hr />
-      <section>
-        <button @click="submitForm">Submit</button>
+      <section class="sections">
+        <button class="thebtn" @click="submitForm">ذخیره</button>
       </section>
     </div>
   </div>
@@ -328,11 +326,92 @@ export default {
 </script>
 
 <style>
-.paper-templ {
-  direction: rtl;
-  margin: 20px;
-  padding: 3%;
-  border: #0b9fc2 2px solid;
-  border-radius: 15px;
+.form-root {
+  overflow: hidden;
+  width: 100%;
+  padding: 2%;
+  margin: 0;
+}
+
+.form-paper {
+  width: 100%;
+  border: black 1px solid;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.paper-title {
+  text-align: center;
+  padding: 40px;
+}
+
+.form-fields {
+  width: 100%;
+  padding: 20px;
+}
+
+.input-field-2 {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-holder {
+  width: 100%;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thebtn {
+  background-color: #006df3;
+  margin: 20px 15px 10px;
+  border-radius: 5px;
+}
+
+.date-picker {
+  width: 60%;
+}
+
+@media (min-width: 800px) {
+  .date-slop {
+    width: 50%;
+    float: right;
+  }
+
+  .input-field-2 {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .date-label {
+    width: 80px;
+  }
+
+  legend {
+    font-size: 1rem;
+  }
+
+  .radio-opt-2 {
+    float: right;
+  }
+
+  .radio-input-2 {
+    width: 30px;
+    padding: 5px;
+  }
+
+  .radio-txt {
+    width: 270px;
+  }
 }
 </style>

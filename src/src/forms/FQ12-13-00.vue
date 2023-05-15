@@ -1,30 +1,18 @@
 <template>
-  <div>
-    <div class="paper-templ">
-      <section class="header">
-        <h3>ارزیابی و نتایج شرکت در دوره های آموزشی</h3>
+  <div class="form-root">
+    <div class="form-paper">
+      <section class="paper-title">
+        <h4>ارزیابی و نتایج شرکت در دوره های آموزشی</h4>
       </section>
-      <section>
-        <div>
-          <label for="adddate">تاریخ شروع دوره:</label>
-          <input
-            v-model="form.startdate"
-            class="input-field"
-            type="date"
-            name="Date"
-            id="date"
-          />
-          <label for="adddate">تاریخ پایان دوره:</label>
-          <input
-            v-model="form.enddate"
-            class="input-field"
-            type="date"
-            name="Date"
-            id="date"
-          />
+      <section class="section">
+        <div class="section">
+          <label class="date-label">تاریخ شروع دوره:</label>
+          <date-picker class="date-picker" v-model="form.startdate" />
+          <label class="date-label">تاریخ پایان دوره:</label>
+          <date-picker class="date-picker" v-model="form.enddate" />
         </div>
       </section>
-      <section>
+      <section class="section">
         <input
           class="input-field"
           type="text"
@@ -43,6 +31,14 @@
         />
         <input
           class="input-field"
+          type="number"
+          name="lname"
+          id="lname"
+          placeholder="کد ملی مددجو"
+          v-model="nationalno"
+        />
+        <input
+          class="input-field"
           type="text"
           name="edu"
           placeholder="میزان تحصیلات"
@@ -56,22 +52,19 @@
           v-model="form.coursename"
         />
       </section>
-      <section>
-        <div class="input-field">
+      <section class="section">
+        <div class="textarea-holder">
           <textarea
+            class="textarea-input"
             v-model="form.analyzeres"
-            name="Textarea"
-            id="textarea"
             rows="3"
+            placeholder="تحلیل و نتیجه دوره برگزار شده"
           >
-                تحلیل و نتیجه دوره برگزار شده
-              </textarea
-          >
+          </textarea>
         </div>
       </section>
-      <hr />
-      <section>
-        <button @click="submitForm">Submit</button>
+      <section class="section">
+        <button class="thebtn" @click="submitForm">ذخیره</button>
       </section>
     </div>
   </div>
@@ -115,15 +108,92 @@ export default {
 </script>
 
 <style>
-.paper-templ {
-  direction: rtl;
-  margin: 20px;
-  padding: 3%;
-  border: #0b9fc2 2px solid;
-  border-radius: 15px;
+.form-root {
+  overflow: hidden;
+  width: 100%;
+  padding: 2%;
+  margin: 0;
 }
 
-table {
+.form-paper {
   width: 100%;
+  border: black 1px solid;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.paper-title {
+  text-align: center;
+  padding: 40px;
+}
+
+.form-fields {
+  width: 100%;
+  padding: 20px;
+}
+
+.input-field-2 {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-holder {
+  width: 100%;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thebtn {
+  background-color: #006df3;
+  margin: 20px 15px 10px;
+  border-radius: 5px;
+}
+
+.date-picker {
+  width: 60%;
+}
+
+@media (min-width: 800px) {
+  .date-slop {
+    width: 50%;
+    float: right;
+  }
+
+  .input-field-2 {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .date-label {
+    width: 80px;
+  }
+
+  legend {
+    font-size: 1rem;
+  }
+
+  .radio-opt-2 {
+    float: right;
+  }
+
+  .radio-input-2 {
+    width: 30px;
+    padding: 5px;
+  }
+
+  .radio-txt {
+    width: 270px;
+  }
 }
 </style>

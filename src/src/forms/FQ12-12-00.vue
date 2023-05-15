@@ -1,34 +1,47 @@
 <template>
-  <div>
-    <div class="paper-templ">
-      <section class="header">
-        <h3>خدمات حمایتی مؤسسه در زمان آموزش مددجو</h3>
+  <div class="form-root">
+    <div class="form-paper">
+      <section class="paper-title">
+        <h4>خدمات حمایتی مؤسسه در زمان آموزش مددجو</h4>
       </section>
-      <section>
-        <input
-          class="input-field"
-          type="text"
-          name="fname"
-          id="fname"
-          placeholder="نام مددجو"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="lname"
-          id="lname"
-          placeholder="نام خانوادگی مددجو"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="father"
-          id="father"
-          placeholder="مدت زمان آموزش"
-        />
+      <section class="form-fields">
+        <div class="sections">
+          <input
+            class="input-field"
+            type="text"
+            name="fname"
+            id="fname"
+            placeholder="نام مددجو"
+            v-model="form.cfname"
+          />
+          <input
+            class="input-field"
+            type="text"
+            name="lname"
+            id="lname"
+            placeholder="نام خانوادگی مددجو"
+            v-model="form.clname"
+          />
+          <input
+            class="input-field"
+            type="number"
+            name="lname"
+            id="lname"
+            placeholder="کد ملی"
+            v-model="nationalno"
+          />
+          <input
+            class="input-field"
+            type="text"
+            name="father"
+            id="father"
+            placeholder="مدت زمان آموزش"
+            v-model="form.duration"
+          />
+        </div>
       </section>
-      <section>
-        <div class="input-field">
+      <section class="sections">
+        <div class="tb-bg">
           <table>
             <tr>
               <th>ردیف</th>
@@ -440,9 +453,8 @@
           </table>
         </div>
       </section>
-      <hr />
-      <section>
-        <button @click="submitForm">Submit</button>
+      <section class="sections">
+        <button class="thebtn" @click="submitForm">ذخیره</button>
       </section>
     </div>
   </div>
@@ -458,6 +470,9 @@ export default {
       formcode: "FQ12-12-00",
       nationalno: "",
       form: {
+        cfname: "",
+        clname: "",
+        duration: "",
         counsultants: "",
         counsultantsp: "",
         loans: "",
@@ -519,15 +534,92 @@ export default {
 </script>
 
 <style>
-.paper-templ {
-  direction: rtl;
-  margin: 20px;
-  padding: 3%;
-  border: #0b9fc2 2px solid;
-  border-radius: 15px;
+.form-root {
+  overflow: hidden;
+  width: 100%;
+  padding: 2%;
+  margin: 0;
 }
 
-table {
+.form-paper {
   width: 100%;
+  border: black 1px solid;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.paper-title {
+  text-align: center;
+  padding: 40px;
+}
+
+.form-fields {
+  width: 100%;
+  padding: 20px;
+}
+
+.input-field-2 {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-holder {
+  width: 100%;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thebtn {
+  background-color: #006df3;
+  margin: 20px 15px 10px;
+  border-radius: 5px;
+}
+
+.date-picker {
+  width: 60%;
+}
+
+@media (min-width: 800px) {
+  .date-slop {
+    width: 50%;
+    float: right;
+  }
+
+  .input-field-2 {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .date-label {
+    width: 80px;
+  }
+
+  legend {
+    font-size: 1rem;
+  }
+
+  .radio-opt-2 {
+    float: right;
+  }
+
+  .radio-input-2 {
+    width: 30px;
+    padding: 5px;
+  }
+
+  .radio-txt {
+    width: 270px;
+  }
 }
 </style>

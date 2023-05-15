@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
-    <ul>
-      <li>
+    <ul class="boss-bar">
+      <li class="boss-li">
         <router-link
           class="route-btn"
           to="/director/usermng"
@@ -9,7 +9,7 @@
           >مدیریت اعضا</router-link
         >
       </li>
-      <li>
+      <li class="boss-li">
         <router-link
           class="route-btn"
           to="/director/clients"
@@ -17,14 +17,14 @@
           >مددجویان</router-link
         >
       </li>
-      <li>
+      <!-- <li>
         <router-link
           class="route-btn"
           to="/director/reports"
           style="color: white"
           >گزارشات</router-link
         >
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>
@@ -40,7 +40,7 @@ export default {
 .navbar {
   direction: rtl;
   text-align: right;
-  background-color: #02b075;
+  background-color: #006df3;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -50,12 +50,21 @@ ul {
   padding: 0;
   overflow: hidden;
   color: white;
-  background-color: #02b075;
+  background-color: #006df3;
+}
+
+.boss-bar {
+  width: 300px;
+  margin: 10px auto;
 }
 
 li {
   float: left;
-  background-color: #02b075;
+  background-color: #006df3;
+}
+
+.boss-li {
+  width: 50%;
 }
 
 .route-btn {
@@ -64,6 +73,6 @@ li {
   padding: 14px 16px;
   color: white;
   text-decoration: none;
-  background-color: #02b075;
+  background-color: #006df3;
 }
 </style>

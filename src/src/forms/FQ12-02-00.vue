@@ -1,22 +1,22 @@
 <template>
-  <div>
-    <div class="paper-border">
-      <div class="header">
+  <div class="form-root">
+    <div class="form-paper">
+      <div class="paper-title">
         <h3>معرفی به سازمان های حمایتی یا واحد اشتغال و کاریابی</h3>
       </div>
-      <div class="form-content">
-        <section>
-          <label for="date">تاریخ</label>
-          <input
-            class="input-field"
-            type="date"
-            name="Date"
-            id="date"
-            v-model="form.docdate"
-          />
-        </section>
-        <hr />
-        <section>
+      <div class="form-fields">
+        <div class="section">
+          <div class="date-slop">
+            <label class="date-label">تاریخ</label>
+            <date-picker
+              class="date-picker"
+              id="date"
+              name="Date"
+              v-model="form.docdate"
+            />
+          </div>
+        </div>
+        <div class="section">
           <input
             class="input-field"
             type="text"
@@ -51,11 +51,11 @@
           />
           <input
             class="input-field"
-            type="text"
+            type="number"
             name="nationalno"
             id="nationalno"
             placeholder="شماره ملی"
-            v-model="form.nationalno"
+            v-model="nationalno"
           />
           <input
             class="input-field"
@@ -73,29 +73,36 @@
             placeholder="زمینه مهارت متقاضی"
             v-model="form.skill"
           />
-        </section>
-        <hr />
-        <section id="matn">
-          <h5>مدیر محترم سازمان / واحد محترم کاریابی {{ form.deporgname }}</h5>
-          <h6>آقای / خانم {{ form.calleefullname }}</h6>
-          <p>
+        </div>
+        <div class="section">
+          <h5>
+            مدیر محترم سازمان / واحد محترم کاریابی
+            <span>{{ form.deporgname }}</span>
+          </h5>
+          <h6>
+            آقای / خانم <span>{{ form.calleefullname }}</span>
+          </h6>
+          <p class="paragraph">
             با سلام، بدین وسیله سرکار خانم
-            {{ form.cfname }} {{ form.clname }}
+            <span>{{ form.cfname }} {{ form.clname }}</span>
             به شماره ملی
-            {{ nationalno }}
+            <span>{{ nationalno }}</span>
             برای استفاده از خدمات حمایتی / خدمات اشتغال و کاریابی
-            {{ form.servicetitle }}
+            <span>{{ form.servicetitle }}</span>
             به حضور جنابعالی معرفی می‌گردد. لازم به ذکر است نامبرده در زمینه
-            {{ form.skill }}
+            <span>{{ form.skill }}</span>
             مهارت داشته و علاقمند اشتغال به کار در این زمینه می‌باشد. خواهشمند
             است دستورات لازم را مبذول بفرمایید.
           </p>
           <h5>با تشکر، مدیر مددکاری موسسه خیریه روزبه</h5>
-        </section>
-        <hr />
-        <section>
-          <button @click="submitForm">ذخیره</button>
-        </section>
+        </div>
+        <div class="thanks">
+          <h5>با تشکر</h5>
+          <h5>مدیر مددکاری موسسه خیریه روزبه</h5>
+        </div>
+        <div class="section">
+          <button class="thebtn" @click="submitForm">ذخیره</button>
+        </div>
       </div>
     </div>
   </div>
@@ -139,48 +146,110 @@ export default {
 </script>
 
 <style>
-.paper-border {
-  direction: rtl;
-  border: 2px solid #0b9fc2;
-  border-radius: 15px;
-  margin: 20px;
-  text-align: start;
-}
-
-.header {
-  width: 96%;
-  margin: 3%;
-  text-align: center;
-}
-
-.form-content {
-  padding: 5%;
-}
-
-#matn {
-  padding: 3%;
-}
-
-.widget-list {
-  direction: rtl;
-  margin: 5%;
-  width: 90%;
-  padding: 3%;
-  border: solid 1px #0b9fc2;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: right;
-  align-items: start;
-}
-
-.radio-opt {
-  width: 33%;
-  margin: 0px;
-  float: right;
-}
-
-.radio-input {
-  width: 30px;
+.form-root {
+  overflow: hidden;
+  width: 100%;
+  padding: 2%;
   margin: 0;
+}
+
+.form-paper {
+  width: 100%;
+  border: black 1px solid;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.paper-title {
+  text-align: center;
+  padding: 40px;
+}
+
+.form-fields {
+  width: 100%;
+  padding: 20px;
+}
+
+.input-field-2 {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-holder {
+  width: 100%;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thebtn {
+  background-color: #006df3;
+  margin: 20px 15px 10px;
+  border-radius: 5px;
+}
+
+.input-field {
+  width: 300px;
+}
+
+.section {
+  padding: 30px;
+  margin: 30px auto;
+}
+
+span {
+  font-weight: bold;
+}
+
+.thanks {
+  text-align: center;
+  font-weight: bolder;
+}
+
+.date-picker {
+  width: 60%;
+}
+
+@media (min-width: 800px) {
+  .date-slop {
+    width: 50%;
+    float: right;
+  }
+
+  .input-field-2 {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .date-label {
+    width: 80px;
+  }
+
+  legend {
+    font-size: 1rem;
+  }
+
+  .radio-opt-2 {
+    float: right;
+  }
+
+  .radio-input-2 {
+    width: 30px;
+    padding: 5px;
+  }
+
+  .radio-txt {
+    width: 270px;
+  }
 }
 </style>

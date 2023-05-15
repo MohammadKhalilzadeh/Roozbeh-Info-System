@@ -20,31 +20,28 @@
         />
         <input
           class="input-field"
-          type="text"
-          name="username"
-          id="username"
+          type="number"
+          name="nationalno"
           placeholder="شماره ملی"
           v-model="form.nationalno"
         />
         <input
           class="input-field"
-          type="text"
-          name="password"
-          id="password"
+          type="tel"
+          name="phone"
           placeholder="شماره تماس"
           v-model="form.phone"
         />
         <input
           class="input-field"
           type="text"
-          name="password"
-          id="password"
+          name="username"
           placeholder="نام کاربری"
           v-model="form.username"
         />
         <input
           class="input-field"
-          type="text"
+          type="password"
           name="password"
           id="password"
           placeholder="رمزعبور"
@@ -53,8 +50,7 @@
         <input
           class="input-field"
           type="text"
-          name="password"
-          id="password"
+          name="address"
           placeholder="آدرس"
           v-model="form.address"
         />
@@ -68,7 +64,7 @@
             v-model="form.resolver"
             class="input-check"
           />
-          <label>مددجویان</label>
+          <label class="labels">مددجویان</label>
         </div>
         <div class="access-options">
           <input
@@ -78,7 +74,7 @@
             v-model="form.education"
             class="input-check"
           />
-          <label>آموزش</label>
+          <label class="labels">آموزش</label>
         </div>
         <div class="access-options">
           <input
@@ -88,7 +84,7 @@
             v-model="form.health"
             class="input-check"
           />
-          <label>بهداشت</label>
+          <label class="labels">بهداشت</label>
         </div>
         <div class="access-options">
           <input
@@ -98,30 +94,33 @@
             v-model="form.counsultant"
             class="input-check"
           />
-          <label>مشاوره</label>
+          <label class="labels">مشاوره</label>
         </div>
       </div>
-      <button @click="postUser">ایجاد</button>
+      <section class="sections">
+        <button class="thebtn" @click="postUser">ایجاد</button>
+      </section>
     </div>
     <hr />
     <div class="members-list">
-      <table>
+      <table class="users-table">
         <tr>
           <th>نام</th>
           <th>نام خانوادگی</th>
           <th>شماره ملی</th>
-          <th>شماره تماس</th>
+          <th>پسورد</th>
           <th>نام کاربری</th>
           <th>پنل مددکاری</th>
           <th>پنل مشاوره</th>
           <th>پنل بهداشت</th>
           <th>پنل آموزش</th>
+          <th>عملیات</th>
         </tr>
         <tr v-for="(member, index) in members" :key="index">
           <td>{{ member.firstname }}</td>
           <td>{{ member.lastname }}</td>
           <td>{{ member.nationalno }}</td>
-          <td>{{ member.phone }}</td>
+          <td>{{ member.password }}</td>
           <td>{{ member.username }}</td>
           <td>
             <h6 v-if="member.resolver">فعال</h6>
@@ -138,6 +137,9 @@
           <td>
             <h6 v-if="member.education">فعال</h6>
             <h6 v-else>غیرفعال</h6>
+          </td>
+          <td>
+            <button class="close" @click="deleteit(member._id)">حذف</button>
           </td>
         </tr>
       </table>
@@ -169,17 +171,54 @@ export default {
     };
   },
   methods: {
-    postUser() {
-      console.log(this.form);
-      axios.post("http://localhost:3000/staffs", this.form).then((response) => {
-        console.log(response);
-      });
+    async postUser() {
+      if (this.form.username.length > 7 && this.form.password.length > 7) {
+        await axios
+          .post("http://localhost:3000/staffs", this.form)
+          .then((response) => {
+            if (response.status == 200) {
+              alert("همکار جدید ایجاد شد");
+            } else {
+              alert("خطا در پردازش");
+            }
+            window.location.reload();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        alert("طول نام کاربری , پسورد باید حداقل 8 کاراکتر باشد");
+      }
+    },
+    async deleteit(id) {
+      await axios
+        .delete("http://localhost:3000/staffs/" + id)
+        .then((res) => {
+          if (res.status == 200) {
+            alert("کارمند حذف شد");
+            window.location.reload();
+          } else {
+            alert("خطا در پردازش");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
-  created() {
-    axios.get("http://localhost:3000/staffs").then((response) => {
-      this.members = response.data;
-    });
+  async created() {
+    await axios
+      .get("http://localhost:3000/staffs")
+      .then((response) => {
+        if (response.status == 200) {
+          this.members = response.data;
+        } else {
+          alert("مشکل در دریافت لیست کارمندان");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>
@@ -199,8 +238,14 @@ export default {
   padding: 3%;
 }
 
+.user-ops {
+  align-items: center;
+  text-align: center;
+}
+
 .members-list {
   width: 90%;
+  overflow: scroll;
 }
 
 input {
@@ -225,11 +270,14 @@ button {
 .access-options {
   width: 40%;
   margin: 0;
-  float: inline-start;
+  padding: 0;
+  float: right;
 }
 
 .input-check {
-  width: 50px;
+  width: 30px;
+  margin: 5px;
+  padding: 0;
 }
 
 label {
@@ -237,6 +285,16 @@ label {
 }
 
 button {
-  background-color: #02b075;
+  background-color: #0b9fc2;
+}
+
+.users-table {
+  width: 96%;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 10px;
 }
 </style>
