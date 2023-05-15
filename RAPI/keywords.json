@@ -5,7 +5,7 @@
     "نام پدر": "father",
     "شماره ملی": "nationalno",
     "تاریخ تولد": "birthdate",
-    "میزان تحصیلات": "education",
+    "میزان تحصیلات": "educationlvl",
     "رشته تحصیلی": "major",
     "وضعیت جسمانی": "physicalstatus",
     "وضعیت سلامت روحی و روانی": "mentalstatus",
@@ -13,5 +13,9 @@
     "سابقه بیماری روحی و روانی مراجع": "cmentalillhistory",
     "سابقه مصرف دارو و بستری": "cillnesshist",
     "سابقه سو مصرف دارو": "drughistory",
-    "تحت درمان متخصص اعصاب": "mentalcare"
+    "تحت درمان متخصص اعصاب": "mentalcare",
+    "سابقه خودکشی": "suicidehist",
+    "خودزنی": "selfhit",
+    "دگرزنی": "hittinothers",
+    "مجرد": "single"
 }

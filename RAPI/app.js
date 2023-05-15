@@ -14,6 +14,10 @@ app.use(cors())
 app.use(express.json())
 
 const staffsRouter = require('./routes/staffs')
+const formsRouter = require('./routes/forms')
+const clientsRouter = require('./routes/clients')
 app.use('/staffs', staffsRouter)
+app.use('/forms', formsRouter)
+app.use('/clients', clientsRouter)
 
 app.listen(3000, () => console.log('Server Started'))
