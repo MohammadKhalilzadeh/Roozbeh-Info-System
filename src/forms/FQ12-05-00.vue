@@ -1,106 +1,81 @@
 <template>
-  <div>
-    <div class="paper-templ">
-      <div class="header">
-        <h3>پذیــرش متقــاضی</h3>
+  <div class="form-root">
+    <div class="form-paper">
+      <div class="paper-title">
+        <h4>پذیــرش متقــاضی</h4>
       </div>
-      <section>
-        <div>
-          <label for="docadate">تاریخ تنظیم:</label>
-          <input
-            v-model="form.docdate"
-            class="input-field"
-            type="date"
-            name="Date"
-            id="date"
-          />
+      <section class="sections">
+        <div class="date-slop">
+          <label class="date-label" for="docadate">تاریخ تنظیم:</label>
+          <date-picker class="date-picker" v-model="form.docdate" />
         </div>
-        <div>
-          <label for="docadate">تاریخ تولد:</label>
-          <input
-            v-model="form.birthdate"
-            class="input-field"
-            type="date"
-            name="Date"
-            id="date"
-          />
+        <div class="date-slop">
+          <label class="date-label" for="docadate">تاریخ تولد:</label>
+          <date-picker class="date-picker" v-model="form.birthdate" />
         </div>
       </section>
-      <section>
+      <section class="sections">
         <input
           class="input-field"
           type="text"
-          name="clientfname"
-          id="clientfname"
           placeholder="نام متقاضی"
           v-model="form.cfname"
         />
         <input
           class="input-field"
           type="text"
-          name="clientlname"
-          id="clientlname"
           placeholder="نام خانوادگی متقاضی"
           v-model="form.clname"
         />
         <input
           class="input-field"
           type="text"
-          name="father"
-          id="father"
           placeholder="نام پدر"
           v-model="form.father"
         />
         <input
           class="input-field"
           type="text"
-          name="shno"
-          id="shno"
           placeholder="شماره شناسنامه"
           v-model="form.idnumber"
         />
         <input
           class="input-field"
-          type="text"
-          name="nationalno"
-          id="nationalno"
+          type="number"
           placeholder="شماره ملی"
           v-model="nationalno"
         />
         <input
           class="input-field"
-          type="text"
-          name="kids"
-          id="kids"
+          type="number"
           placeholder="تعداد عائله تحت تکفل"
           v-model="form.numberofsupervisions"
         />
         <input
           class="input-field"
           type="text"
-          name="city"
-          id="city"
           placeholder="صادره از"
           v-model="form.eligedby"
         />
         <input
           class="input-field"
-          type="text"
-          name="phone"
-          id="phone"
+          type="tel"
           placeholder="شماره تماس"
           v-model="form.phone"
         />
-        <div class="input-field">
+        <div class="textarea-holder">
           <textarea
+            placeholder="آدرس"
+            class="textarea-input"
             v-model="form.address"
-            name="Textarea"
-            id="textarea"
             rows="3"
           >
-آدرس</textarea
-          >
+          </textarea>
         </div>
+      </section>
+      <hr />
+      <section class="sections">
+        <button class="thebtn" @click="submitForm">ذخیره</button>
       </section>
     </div>
   </div>
@@ -177,5 +152,9 @@ export default {
 .radio-input {
   width: 30px;
   margin: 0;
+}
+
+.date-picker {
+  width: 60%;
 }
 </style>

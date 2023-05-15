@@ -107,6 +107,6 @@ input {
 table,
 th,
 td {
-  border: 1px solid #02b075;
+  border: 1px solid #0b9fc2;
 }
 </style>

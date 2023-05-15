@@ -1,83 +1,73 @@
 <template>
-  <div>
-    <div class="paper-templ">
-      <div class="header">
-        <h3>آشنایی با دوره های آموزشی مؤسسه خیریه روزبه</h3>
-      </div>
-      <section>
-        <input
-          class="input-field"
-          type="text"
-          name="cfname"
-          id="cfname"
-          placeholder="نام متقاضی"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="clname"
-          id="clname"
-          placeholder="نام خانوادگی متقاضی"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="father"
-          id="father"
-          placeholder="نام پدر"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="nationalno"
-          id="nationalno"
-          placeholder="شماره ملی"
-        />
-        <input
-          class="input-field"
-          type="text"
-          name="edudep"
-          id="edudep"
-          placeholder="نام واحد آموزشی"
-        />
+  <div class="form-root">
+    <div class="form-paper">
+      <section class="paper-title">
+        <h3>حضور و غیاب مددجو در واحد آموزش</h3>
       </section>
-      <hr />
-      <section>
-        <div class="text-holder">
-          <p>
-            اینجانب
-            {{ fname }} {{ lname }}
-            فرزند
-            {{ father }}
-            به شماره ملی
-            {{ nationalid }}
-            با مطالعه و اطلاع کامل سرفصل های آموزشی موسسه خیریه روزبه، مایلم در
-            واحد آموزشی
-            {{ edudep }}
-            مشغول به یادگیری و مهارت آموزی شوم.
-          </p>
+      <section class="sections">
+        <div class="date-slop">
+          <label class="date-label" for="adddate">تاریخ شروع دوره:</label>
+          <date-picker class="date-picker" v-model="form.startdate" />
         </div>
       </section>
-      <hr />
-      <section>
-        <div class="input-field">
+      <section class="sections">
+        <div class="sections">
+          <input
+            class="input-field"
+            type="text"
+            name="fname"
+            id="fname"
+            placeholder="نام مددجو"
+            v-model="form.cfname"
+          />
+          <input
+            class="input-field"
+            type="text"
+            name="lname"
+            id="lname"
+            placeholder="نام خانوادگی مددجو"
+            v-model="form.clname"
+          />
+          <input
+            class="input-field"
+            type="text"
+            name="nationalid"
+            placeholder="نام واحد آموزشی"
+            v-model="form.eduunit"
+          />
+          <input
+            class="input-field"
+            type="number"
+            name="nationalid"
+            placeholder="کد ملی"
+            v-model="nationalno"
+          />
+        </div>
+      </section>
+      <!-- <section class="sections">
+        <div class="textarea-input">
           <table>
             <tr>
               <th>ردیف</th>
-              <th>آشپزی</th>
-              <th>آشپزی</th>
-              <th>قنادی</th>
-              <th>خیاطی</th>
+              <th>تاریخ</th>
+              <th>ساعت ورود</th>
+              <th>ساعت خروج</th>
+              <th>امضا و اثر انپشت مددجو</th>
+              <th>توضیحات</th>
             </tr>
             <tr>
-              <td>1</td>
-              <td>آشنایی به مواد اولیه و شرایط نگهداری دستگاه‌ها</td>
-              <td>آشنایی با شرایط نگهداری مواد غذایی</td>
-              <td>آشنایی به مواد اولیه و شرایط نگهداری دستگاه‌ها</td>
-              <td>آشنایی با دشتگاه ها و ابزار خیاطی</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
           </table>
         </div>
+      </section> -->
+      <section class="sections">
+        <button class="thebtn" @click="submitForm">ذخیره</button>
       </section>
     </div>
   </div>
@@ -87,17 +77,16 @@
 import axios from "axios";
 
 export default {
-  name: "FQ12-06-00",
+  name: "FQ12-24-00",
   data: () => {
     return {
-      formcode: "FQ12-06-00",
+      formcode: "FQ12-24-00",
       nationalno: "",
       form: {
+        startdate: "",
         cfname: "",
         clname: "",
-        father: "",
-        nationalno: "",
-        edudepname: "",
+        eduunit: "",
       },
     };
   },
@@ -119,38 +108,92 @@ export default {
 </script>
 
 <style>
-.paper-templ {
-  direction: rtl;
-  margin: 20px;
-  padding: 3%;
-  border: #0b9fc2 2px solid;
-  border-radius: 15px;
-}
-
-.widget-list {
-  direction: rtl;
-  margin: 5%;
-  width: 90%;
-  padding: 3%;
-  border: solid 1px #0b9fc2;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  text-align: right;
-  align-items: start;
-}
-
-.radio-opt {
-  width: 33%;
-  margin: 0px;
-  float: right;
-}
-
-.radio-input {
-  width: 30px;
+.form-root {
+  overflow: hidden;
+  width: 100%;
+  padding: 2%;
   margin: 0;
 }
 
-.text-holder {
-  padding: 3%;
+.form-paper {
+  width: 100%;
+  border: black 1px solid;
+  padding: 20px;
+  margin: 10px auto;
+}
+
+.paper-title {
+  text-align: center;
+  padding: 40px;
+}
+
+.form-fields {
+  width: 100%;
+  padding: 20px;
+}
+
+.input-field-2 {
+  width: 200px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textarea-holder {
+  width: 100%;
+}
+
+.textarea-input {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.thebtn {
+  background-color: #006df3;
+  margin: 20px 15px 10px;
+  border-radius: 5px;
+}
+
+.date-picker {
+  width: 60%;
+}
+
+@media (min-width: 800px) {
+  .date-slop {
+    width: 50%;
+    float: right;
+  }
+
+  .input-field-2 {
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .date-label {
+    width: 80px;
+  }
+
+  legend {
+    font-size: 1rem;
+  }
+
+  .radio-opt-2 {
+    float: right;
+  }
+
+  .radio-input-2 {
+    width: 30px;
+    padding: 5px;
+  }
+
+  .radio-txt {
+    width: 270px;
+  }
 }
 </style>
