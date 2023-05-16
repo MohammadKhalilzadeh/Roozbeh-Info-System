@@ -460,6 +460,11 @@
             </button>
           </div>
         </div>
+        <div>
+          <button class="close deleter" @click="deleteHer(i.userid)">
+            حذف متقاضی
+          </button>
+        </div>
       </div>
       <div v-else-if="searchedclientsforms.length == 0 && search.length == 0">
         <div class="the-tile" v-for="(i, index) in clientsforms" :key="index">
@@ -474,6 +479,11 @@
               :key="index"
             >
               {{ f.formcode }}
+            </button>
+          </div>
+          <div>
+            <button class="close deleter" @click="deleteHer(i.userid)">
+              حذف متقاضی
             </button>
           </div>
         </div>
@@ -581,6 +591,7 @@ export default {
               this.searchedclientsforms.push({
                 nationalno: element.nationalno,
                 forms: response.data,
+                userid: element._id,
               });
             } else {
               alert("خطا در پردازش درخواست");
@@ -647,6 +658,7 @@ export default {
         .then((response) => {
           if (response.status == 200) {
             alert("متقاضی با موفقیت افزوده شد");
+            window.location.reload();
           } else {
             alert("ناموفق در ایجاد متقاضی جدید");
           }
@@ -702,6 +714,21 @@ export default {
         this.$router.push("/userpanel/madadkhari/fq122000/" + formid);
       }
     },
+    async deleteHer(id) {
+      await axios
+        .delete("http://localhost:3000/clients/" + id)
+        .then((res) => {
+          if (res.status == 200) {
+            alert("متقاضی حذف شد");
+            window.location.reload();
+          } else {
+            alert("خطا در پردازش");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
   async created() {
     await axios
@@ -724,6 +751,7 @@ export default {
           this.clientsforms.push({
             nationalno: element.nationalno,
             forms: response.data,
+            userid: element._id,
           });
         })
         .catch((err) => {
@@ -768,5 +796,9 @@ export default {
 .close {
   background-color: #f30000;
   color: #fff;
+}
+
+.deleter {
+  margin: 20px auto;
 }
 </style>

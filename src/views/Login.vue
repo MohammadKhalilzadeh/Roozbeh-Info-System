@@ -47,6 +47,7 @@ export default {
         if (this.username == "admin") {
           if (this.password == "admin") {
             router.push("/director/usermng");
+            window.location.reload();
           } else {
             alert("رمز عبور اشتباه است");
           }
@@ -66,6 +67,7 @@ export default {
           if (res.status == 200) {
             localStorage.setItem("id", res.data._id);
             router.push("/userpanel");
+            window.location.reload();
           } else if (res.status == 401) {
             alert("رمز عبور اشتباه است");
           } else if (res.status == 404) {
