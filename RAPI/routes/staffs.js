@@ -50,7 +50,7 @@ router.post('/login/:username', async(req, res) => {
             res.status(404).json({ message: 'Not Found' })
         }
     } catch (err) {
-        res.json({ message: err.message })
+        res.json(err)
     }
 })
 
@@ -66,7 +66,7 @@ router.delete('/:id', async(req, res) => {
         const staff = await Staff.findByIdAndDelete(req.params.id)
         res.status(200).json(staff)
     } catch (error) {
-        res.json({ message: error.message })
+        res.json(error)
     }
 })
 module.exports = router

@@ -38,7 +38,7 @@ router.get('/madadkari/:nationalid', async(req, res) => {
                     'FQ12-06-00',
                     'FQ12-07-00',
                     'FQ12-08-00',
-                    'FQ12-10-00',
+                    // 'FQ12-10-00',
                     'FQ12-11-00',
                     'FQ12-12-00',
                     'FQ12-13-00',

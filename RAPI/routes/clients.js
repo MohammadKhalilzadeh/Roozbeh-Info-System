@@ -35,4 +35,14 @@ router.post('/boss/search', async(req, res) => {
     }
 })
 
+router.delete('/:id', async(req, res) => {
+    console.log(req.params.id);
+    try {
+        const client = await Client.findByIdAndDelete(req.params.id)
+        res.status(200).json(client)
+    } catch (error) {
+        res.json(error)
+    }
+})
+
 module.exports = router
