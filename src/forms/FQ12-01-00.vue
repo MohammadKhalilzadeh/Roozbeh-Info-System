@@ -24,55 +24,57 @@
           </div>
         </section>
         <section>
-          <input
-            class="input-field"
-            type="text"
-            name="Firstname"
-            placeholder="نام متقاضی"
-            v-model="form.cfname"
-          />
-          <input
-            class="input-field"
-            type="text"
-            name="Lastname"
-            placeholder="نام خانوادگی متقاضی"
-            v-model="form.clname"
-          />
-          <input
-            class="input-field"
-            type="text"
-            name="Father"
-            placeholder="نام پدر"
-            v-model="form.father"
-          />
-          <input
-            class="input-field"
-            type="number"
-            name="Nationalid"
-            placeholder="شماره ملی"
-            v-model="nationalno"
-          />
-          <input
-            class="input-field"
-            type="text"
-            name="Edulevel"
-            placeholder="میزان تحصیلات"
-            v-model="form.educationlvl"
-          />
-          <input
-            class="input-field"
-            type="text"
-            name="major"
-            placeholder="رشته تحصیلی"
-            v-model="form.major"
-          />
-          <input
-            class="input-field"
-            type="text"
-            name="Physicalstate"
-            placeholder="وضعیت جسمانی"
-            v-model="form.physicalstatus"
-          />
+          <div class="sections">
+            <input
+              class="input-field"
+              type="text"
+              name="Firstname"
+              placeholder="نام متقاضی"
+              v-model="form.cfname"
+            />
+            <input
+              class="input-field"
+              type="text"
+              name="Lastname"
+              placeholder="نام خانوادگی متقاضی"
+              v-model="form.clname"
+            />
+            <input
+              class="input-field"
+              type="text"
+              name="Father"
+              placeholder="نام پدر"
+              v-model="form.father"
+            />
+            <input
+              class="input-field"
+              type="number"
+              name="Nationalid"
+              placeholder="شماره ملی"
+              v-model="nationalno"
+            />
+            <input
+              class="input-field"
+              type="text"
+              name="Edulevel"
+              placeholder="میزان تحصیلات"
+              v-model="form.educationlvl"
+            />
+            <input
+              class="input-field"
+              type="text"
+              name="major"
+              placeholder="رشته تحصیلی"
+              v-model="form.major"
+            />
+            <input
+              class="input-field"
+              type="text"
+              name="Physicalstate"
+              placeholder="وضعیت جسمانی"
+              v-model="form.physicalstatus"
+            />
+          </div>
         </section>
         <hr />
         <section>
@@ -1432,26 +1434,20 @@ export default {
     };
   },
   methods: {
-    submitform() {
-      let instance = axios.create();
-
-      delete instance.defaults.headers.common["Accept"];
-      delete instance.defaults.headers.common["X-Requested-With"];
-      delete instance.defaults.headers.common["X-CSRF-TOKEN"];
-
-      console.log({
-        content: this.form,
-        nationalno: this.nationalno,
-      });
-      instance
+    async submitform() {
+      await axios
         .post("http://localhost:3000/forms/", {
           formcode: this.formcode,
           nationalno: this.nationalno,
           content: this.form,
         })
         .then((res) => {
-          console.log(res.status);
-          console.log(res.data);
+          if (res.status == 200) {
+            alert("فرم ایجاد شد");
+            window.location.reload();
+          } else {
+            alert("خطا در پردازش درخواست");
+          }
         })
         .catch((err) => {
           console.log(err);

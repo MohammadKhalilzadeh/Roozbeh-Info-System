@@ -69,16 +69,23 @@ export default {
     };
   },
   methods: {
-    submitForm() {
-      axios
-        .post("http://localhost:3000/forms", {
+    async submitForm() {
+      await axios
+        .post("http://localhost:3000/forms/", {
           formcode: this.formcode,
           nationalno: this.nationalno,
           content: this.form,
         })
         .then((res) => {
-          console.log(res.status);
-          console.log(res.data);
+          if (res.status == 200) {
+            alert("فرم ایجاد شد");
+            window.location.reload();
+          } else {
+            alert("خطا در پردازش درخواست");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
         });
     },
   },
