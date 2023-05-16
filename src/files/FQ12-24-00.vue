@@ -22,7 +22,7 @@
         >
         <label class="labels"><span>کد ملی:</span> {{ form.nationalno }}</label>
       </section>
-      <hr />
+      <!-- <hr />
       <section class="sections">
         <div>
           <table>
@@ -44,7 +44,7 @@
             </tr>
           </table>
         </div>
-      </section>
+      </section> -->
       <hr />
       <section>
         <button class="close" @click="deleteit(form._id)">حذف</button>
@@ -70,6 +70,7 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             alert("فرم حذف شد");
+            window.location.reload();
           } else {
             alert("خطا در پردازش");
           }

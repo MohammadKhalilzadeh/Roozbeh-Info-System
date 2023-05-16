@@ -51,7 +51,7 @@
           >
         </div>
       </section>
-      <section class="sections">
+      <!-- <section class="sections">
         <h5>مشخصات فرزندان مددجو (حمایت شونده)</h5>
         <div class="sections">
           <table>
@@ -79,7 +79,7 @@
             </tr>
           </table>
         </div>
-      </section>
+      </section> -->
       <section class="sections">
         <div>
           <label class="labels"
@@ -125,6 +125,7 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             alert("فرم حذف شد");
+            window.location.reload();
           } else {
             alert("خطا در پردازش");
           }

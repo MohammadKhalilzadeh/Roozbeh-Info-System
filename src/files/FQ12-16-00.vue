@@ -100,6 +100,7 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             alert("فرم حذف شد");
+            window.location.reload();
           } else {
             alert("خطا در پردازش");
           }

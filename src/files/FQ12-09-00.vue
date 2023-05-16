@@ -50,7 +50,7 @@
         </p>
       </section>
       <hr />
-      <section>
+      <!-- <section>
         <div class="input-field">
           <table>
             <tr>
@@ -70,13 +70,13 @@
           </table>
         </div>
       </section>
-      <hr />
+      <hr /> -->
       <section>
-        <div class="input-field">
+        <!-- <div class="input-field">
           <textarea name="Textarea" id="textarea" rows="3">
           توضیح درصورت بروز موارد خاص  
           </textarea>
-        </div>
+        </div> -->
       </section>
       <hr />
       <section>
@@ -103,6 +103,7 @@ export default {
         .then((res) => {
           if (res.status == 200) {
             alert("فرم حذف شد");
+            window.location.reload();
           } else {
             alert("خطا در پردازش");
           }
